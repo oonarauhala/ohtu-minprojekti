@@ -5,3 +5,7 @@
 .vscode
 venv
 **/.venv
+selenium*
+log.html
+output.xml
+report.html

@@ -22,3 +22,15 @@ jobs:
         run: poetry install
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
+
+
+  test:
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: Execute tests
+        uses: joonvena/robotframework-docker-action@v0.1
+        env:
+          BROWSER: chrome
+          ROBOT_TESTS_DIR: ${{ github.workspace }}/src/tests/robot
+          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
