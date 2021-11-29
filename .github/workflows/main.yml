@@ -22,10 +22,8 @@ jobs:
         run: poetry install
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
-      - name: Start poetry shell
-        run: poetry shell
       - name: Run robot tests
-        run: robot src/tests/robot
+        run: poetry run robot src/tests/robot
              
         
 
