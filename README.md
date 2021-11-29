@@ -1,4 +1,30 @@
-# ohtu-minprojekti
-tekstiä
+# Ohtu miniprojekti
 
-testi
+Ohjelma on lukuvinkkisovellus ja on toteutettu ryhmätyönä ohjelmistotuotanto-kurssille.
+
+## Käyttöohjeet
+
+Asenna riippuvuudet komennolla
+
+```
+poetry install
+```
+
+Avaa virtuaaliympäristö komennolla
+
+```
+poetry shell
+```
+
+Käynnistä ohjelma komennolla
+
+```
+python3 src/index.py
+```
+
+Avaamalla terminaaliin ilmestynyt linkki ohjelma aukeaa.
+
+## Dokumentaatio
+
+[Backlog](https://docs.google.com/spreadsheets/d/18ML2sxw8d6rkpPOPR_jcKxy2z214WIsQhWD_ZzRB4dU/edit#gid=1442053365)
+
