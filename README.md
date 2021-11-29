@@ -1,5 +1,7 @@
 # Ohtu miniprojekti
 
+![GitHub Actions](https://github.com/oonarauhala/ohtu-minprojekti/workflows/CI/badge.svg)
+
 Ohjelma on lukuvinkkisovellus ja on toteutettu ryhmätyönä ohjelmistotuotanto-kurssille.
 
 ## Käyttöohjeet
