@@ -40,6 +40,6 @@ def create():
       cur.execute(komento, {"vinkki":vinkki})
       return redirect("/list")
    except:
-      return render_template("error.html", viesti="Lisääminen epäonnistui")
+      return render_template("error.html", viesti="Lisääminen epäonnistui", takaisin="/new")
 
 app.run(debug = True)
