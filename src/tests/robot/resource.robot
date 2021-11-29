@@ -33,3 +33,8 @@ Go To Lista Page
 
 List Page Should Be Open
     Title Should Be  Lukuvinkit
+
+Input Title
+    [Arguments] ${otsikko}
+    Input ${otsikko}
+    Run Application
