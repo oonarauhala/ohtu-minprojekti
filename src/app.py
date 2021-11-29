@@ -21,9 +21,11 @@ def list():
 def index():
    return render_template("index.html")
 
+
 @app.route('/new')
 def new():
    return render_template("new.html")
+
 
 @app.route('/create', methods=["POST"])
 def create():
@@ -32,10 +34,12 @@ def create():
    con = sql.connect("tietokanta.db")
    con.row_factory = sql.Row
    con.isolation_level = None
-   
    cur = con.cursor()
-   cur.execute(komento, {"vinkki":vinkki})
 
-   return redirect("/list")
+   try:
+      cur.execute(komento, {"vinkki":vinkki})
+      return redirect("/list")
+   except:
+      return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 app.run(debug = True)
