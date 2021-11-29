@@ -6,5 +6,7 @@ Test Setup  Go To New Page
 
 *** Test Cases ***
 Add A Title
-    Input Title  otsikko
-    Output Should Contain  Lisääminen epäonnistui
+    Input Title  testi
+    Submit lukuvinkki
+    List Page Should Be Open
+

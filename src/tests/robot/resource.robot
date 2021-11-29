@@ -35,6 +35,8 @@ List Page Should Be Open
     Title Should Be  Lukuvinkit
 
 Input Title
-    [Arguments] ${otsikko}
-    Input ${otsikko}
-    Run Application
+    [Arguments]  ${otsikko}
+    Input Text  otsikko  ${otsikko}
+
+Submit lukuvinkki
+    Click Button  Luo vinkki
