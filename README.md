@@ -39,3 +39,6 @@ Avaamalla terminaaliin ilmestynyt linkki ohjelma aukeaa.
 * Käyttökokemus asiakasta miellyttävä
 * Asiakas pystyy näkemään koodin ja testien tilanteen CI-palvelusta
 
+## License
+
+[MIT-License](https://github.com/oonarauhala/ohtu-minprojekti/LICENSE)
