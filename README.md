@@ -41,4 +41,4 @@ Avaamalla terminaaliin ilmestynyt linkki ohjelma aukeaa.
 
 ## License
 
-[MIT-License](https://github.com/oonarauhala/ohtu-minprojekti/LICENSE)
+[MIT-License](https://github.com/oonarauhala/ohtu-minprojekti/blob/master/LICENSE)
