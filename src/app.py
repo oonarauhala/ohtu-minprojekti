@@ -30,6 +30,8 @@ def new():
 @app.route('/create', methods=["POST"])
 def create():
    vinkki = request.form["otsikko"]
+   if len(vinkki)==0:
+      return render_template("error.html", viesti="Tyhjää lukuvinkkiä ei voi lähettää")
    komento = "INSERT INTO Vinkit (Otsikko) VALUES (:vinkki)"
    con = sql.connect("tietokanta.db")
    con.row_factory = sql.Row
