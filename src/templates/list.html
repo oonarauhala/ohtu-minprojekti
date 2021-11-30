@@ -1,12 +1,21 @@
 <!doctype html>
+<style>
+   td, th {
+        width: 75;
+        height: 50;
+        padding: 15px;
+        border-bottom: 1px solid rgb(0, 0, 0);
+        box-sizing: border-box;
+        font-family: serif;
+      }
+</style>
 <html>
    <title>Lukuvinkit</title>
    <body>
-   
-      <table border = 1>
+      <h2>Lukuvinkit:</h2>
+      <table style="border-style: solid; border-color: black;">
          <thead>
-            <td>Otsikko</td>
-
+            <td style="background-color: darkgrey;">Otsikko</td>
          </thead>
          
          {% for row in rows %}
@@ -15,7 +24,7 @@
             </tr>
          {% endfor %}
       </table>
-      
+      <br>
       <a href = "/">Go back to home page</a>
       
    </body>
