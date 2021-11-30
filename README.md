@@ -30,3 +30,7 @@ Avaamalla terminaaliin ilmestynyt linkki ohjelma aukeaa.
 
 [Backlog](https://docs.google.com/spreadsheets/d/18ML2sxw8d6rkpPOPR_jcKxy2z214WIsQhWD_ZzRB4dU/edit#gid=1442053365)
 
+## Definition of done
+
+* Kirjattu product backlogiin ja sprint backlogiin
+* 
