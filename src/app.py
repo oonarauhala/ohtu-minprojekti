@@ -12,7 +12,7 @@ def list():
    cur = con.cursor()
    cur.execute("select * from Vinkit")
    
-   rows = cur.fetchall(); 
+   rows = cur.fetchall()
    return render_template("list.html",rows = rows)
 
    
@@ -40,6 +40,6 @@ def create():
       cur.execute(komento, {"vinkki":vinkki})
       return redirect("/list")
    except:
-      return render_template("error.html", viesti="Lisääminen epäonnistui", takaisin="/new")
+      return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 app.run(debug = True)
