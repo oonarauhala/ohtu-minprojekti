@@ -9,7 +9,7 @@ def list():
    con.row_factory = sql.Row
 
    cur = con.cursor()
-   cur.execute("select * from Vinkit")
+   cur.execute("select * from Kirjavinkit")
 
    rows = cur.fetchall()
    return render_template("list.html",rows = rows)
@@ -32,7 +32,7 @@ def create():
    kommentti = request.form["kommentti"]
    if len(vinkki.split())==0:
       return render_template("error.html", viesti="Tyhjää lukuvinkkiä ei voi lähettää")
-   komento = "INSERT INTO Vinkit (Otsikko, kirjoittaja, isbn, kommentti) VALUES (:vinkki, :kirjoittaja, :isbn, :kommentti)"
+   komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) VALUES (:vinkki, :kirjoittaja, :isbn, :kommentti)"
    con = sql.connect("tietokanta.db")
    con.row_factory = sql.Row
    con.isolation_level = None
