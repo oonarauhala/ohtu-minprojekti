@@ -1,4 +1,6 @@
 CREATE TABLE Vinkit (
     id INTEGER PRIMARY KEY,
-    Otsikko TEXT
+    Otsikko TEXT,
+    kirjoittaja TEXT,
+    isbn TEXT
 );
