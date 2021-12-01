@@ -15,12 +15,18 @@
       <h2>Lukuvinkit:</h2>
       <table style="border-style: solid; border-color: black;">
          <thead>
-            <td style="background-color: darkgrey;">Otsikko</td>
+            <th style="background-color: darkgrey;">Otsikko</th>
+            <th style="background-color: darkgrey;">Kirjoittaja</th>
+            <th style="background-color: darkgrey;">ISBN</th>
+            <th style="background-color: darkgrey;">Kommentti</th>
          </thead>
          
          {% for row in rows %}
             <tr>
-               <td>{{row.otsikko}}</td>	
+               <td>{{row.otsikko}}</td>
+               <td>{{row.kirjoittaja}}</td>
+               <td>{{row.isbn}}</td>
+               <td>{{row.kommentti}}</td>	
             </tr>
          {% endfor %}
       </table>
