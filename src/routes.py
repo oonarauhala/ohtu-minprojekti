@@ -26,20 +26,20 @@ def new():
 
 @app.route('/create', methods=["POST"])
 def create():
-   vinkki = request.form["otsikko"]
+   otsikko = request.form["otsikko"]
    kirjoittaja = request.form["kirjoittaja"]
    isbn = request.form["isbn"]
    kommentti = request.form["kommentti"]
-   if len(vinkki.split())==0:
-      return render_template("error.html", viesti="Tyhjää lukuvinkkiä ei voi lähettää")
-   komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) VALUES (:vinkki, :kirjoittaja, :isbn, :kommentti)"
+   if len(otsikko.split())==0 or len(kirjoittaja.split())==0 or len(isbn.split())==0 or len(kommentti.split())==0:
+      return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
+   komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) VALUES (:otsikko, :kirjoittaja, :isbn, :kommentti)"
    con = sql.connect("tietokanta.db")
    con.row_factory = sql.Row
    con.isolation_level = None
    cur = con.cursor()
 
    try:
-      cur.execute(komento, {"vinkki":vinkki, "kirjoittaja":kirjoittaja, "isbn":isbn, "kommentti":kommentti})
+      cur.execute(komento, {"otsikko":otsikko, "kirjoittaja":kirjoittaja, "isbn":isbn, "kommentti":kommentti})
       return redirect("/list")
    except:
       return render_template("error.html", viesti="Lisääminen epäonnistui")
