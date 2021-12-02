@@ -7,6 +7,7 @@ ${BROWSER}  chrome
 ${DELAY}  0.5 seconds
 ${HOME URL}  http://${SERVER}
 ${NEW BOOK URL}  http://${SERVER}/new
+${NEW BLOG URL}  http://${SERVER}/new_blog
 ${LISTA URL}  http://${SERVER}/list
 
 
@@ -24,6 +25,10 @@ Main Page Should Be Open
 
 Go To New Book Page
     Go To  ${NEW BOOK URL}
+
+Go To New Blog Page
+    Go To  ${NEW BLOG URL}
+
 
 New Book Page Should Be Open
     Title Should Be  Uusi kirjavinkki
@@ -44,5 +49,15 @@ Input Book Info
     Input Text  isbn  ${isbn}
     Input Text  kommentti  ${kommentti}
 
-Submit lukuvinkki
+Input Blog Info
+    [Arguments]  ${nimi}  ${kirjoittaja}  ${url}  ${kommentti}
+    Input Text  nimi  ${nimi}
+    Input Text  kirjoittaja  ${kirjoittaja}
+    Input Text  url  ${url}
+    Input Text  kommentti  ${kommentti}
+
+
+Submit vinkki
     Click Button  Luo vinkki
+
+
