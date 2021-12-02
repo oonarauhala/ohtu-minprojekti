@@ -29,9 +29,17 @@ Go To New Book Page
 Go To New Blog Page
     Go To  ${NEW BLOG URL}
 
-
 New Book Page Should Be Open
     Title Should Be  Uusi kirjavinkki
+
+New Blog Page Should Be Open
+    Title Should be  Uusi blogivinkki
+
+New Video Page Should Be Open
+    Title Should Be  Uusi videovinkki
+
+New Podcast Page Should Be Open
+    Title Should be  Uusi podcastvinkki
 
 Go To Lista Page
     Go To  ${LISTA URL}
