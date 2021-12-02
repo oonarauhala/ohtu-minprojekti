@@ -10,3 +10,8 @@ Add A Book
     Submit lukuvinkki
     List Page Should Be Open
 
+Add A Book Wrong
+    Input Book Info  testi  \  01234  hyva kirja
+    Submit lukuvinkki
+    Error Page Should Be Open
+

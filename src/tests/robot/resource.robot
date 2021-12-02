@@ -34,6 +34,9 @@ Go To Lista Page
 List Page Should Be Open
     Title Should Be  Lukuvinkit
 
+Error Page Should Be Open
+    Title Should Be  Virhe
+
 Input Book Info
     [Arguments]  ${otsikko}  ${kirjoittaja}  ${isbn}  ${kommentti}
     Input Text  otsikko  ${otsikko}
