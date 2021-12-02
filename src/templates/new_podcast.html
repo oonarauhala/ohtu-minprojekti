@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <title>Uusi podcastvinkki</title>
+   <body>
+      <form action="/new_podcast" method="POST">
+      <p>Podcastin nimi:<br>
+      <input type="text" name="nimi" size="30"></p>
+      <p>Tekijä:<br>
+      <input type="text" name="tekija" size="30"></p>
+      <p>Jakson nimi:<br>
+      <input type="text" name="jakson_nimi" size="30"></p>
+      <p>Kommentti</p>
+      <textarea name="kommentti" rows="5" cols="40"></textarea> <br>
+      <input type="submit" value="Luo vinkki">
+      </form>
+      <br>
+      <a href = "/">Go back to home page</a>
+   </body>
+</html>
