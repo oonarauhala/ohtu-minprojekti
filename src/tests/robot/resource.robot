@@ -25,8 +25,8 @@ Main Page Should Be Open
 Go To New Book Page
     Go To  ${NEW BOOK URL}
 
-New Page Should Be Open
-    Title Should Be  Uusi lukuvinkki
+New Book Page Should Be Open
+    Title Should Be  Uusi kirjavinkki
 
 Go To Lista Page
     Go To  ${LISTA URL}

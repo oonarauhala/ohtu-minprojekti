@@ -6,8 +6,8 @@ Test Setup  Go To Main Page
 
 *** Test Cases ***
 Click Uusi Vinkki Link
-    Click Link  Uusi vinkki
-    New Page Should Be Open
+    Click Link  Uusi kirjavinkki
+    New Book Page Should Be Open
 
 Click Lista Link
     Click Link  Lista
