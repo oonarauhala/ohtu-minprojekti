@@ -6,7 +6,7 @@ ${SERVER}  localhost:5000
 ${BROWSER}  chrome
 ${DELAY}  0.5 seconds
 ${HOME URL}  http://${SERVER}
-${NEW URL}  http://${SERVER}/new
+${NEW BOOK URL}  http://${SERVER}/new
 ${LISTA URL}  http://${SERVER}/list
 
 
@@ -22,8 +22,8 @@ Go To Main Page
 Main Page Should Be Open
     Title Should Be  Etusivu
 
-Go To New Page
-    Go To  ${NEW URL}
+Go To New Book Page
+    Go To  ${NEW BOOK URL}
 
 New Page Should Be Open
     Title Should Be  Uusi lukuvinkki
@@ -34,9 +34,12 @@ Go To Lista Page
 List Page Should Be Open
     Title Should Be  Lukuvinkit
 
-Input Title
-    [Arguments]  ${otsikko}
+Input Book Info
+    [Arguments]  ${otsikko}  ${kirjoittaja}  ${isbn}  ${kommentti}
     Input Text  otsikko  ${otsikko}
+    Input Text  kirjoittaja  ${kirjoittaja}
+    Input Text  isbn  ${isbn}
+    Input Text  kommentti  ${kommentti}
 
 Submit lukuvinkki
     Click Button  Luo vinkki
