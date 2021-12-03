@@ -6,7 +6,7 @@ ${SERVER}  localhost:5000
 ${BROWSER}  chrome
 ${DELAY}  0.5 seconds
 ${HOME URL}  http://${SERVER}
-${NEW BOOK URL}  http://${SERVER}/new
+${NEW BOOK URL}  http://${SERVER}/new_book
 ${NEW BLOG URL}  http://${SERVER}/new_blog
 ${LISTA URL}  http://${SERVER}/list
 
