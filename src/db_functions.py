@@ -22,6 +22,16 @@ def new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti):
         return False
     return True
 
+def get_blogivinkit():
+    con = sql.connect("tietokanta.db")
+    con.row_factory = sql.Row
+
+    cur = con.cursor()
+    cur.execute("select * from Blogivinkit")
+
+    rows = cur.fetchall()
+    return rows
+
 def new_blogivinkki(nimi, kirjoittaja, url, kommentti):
     komento = "INSERT INTO Blogivinkit (nimi, kirjoittaja, url, kommentti) VALUES (:nimi, :kirjoittaja, :url, :kommentti)"
     con = sql.connect("tietokanta.db")
@@ -33,3 +43,23 @@ def new_blogivinkki(nimi, kirjoittaja, url, kommentti):
     except:
         return False
     return True
+
+def get_podcastvinkit():
+    con = sql.connect("tietokanta.db")
+    con.row_factory = sql.Row
+
+    cur = con.cursor()
+    cur.execute("select * from Podcastvinkit")
+
+    rows = cur.fetchall()
+    return rows
+
+def get_videovinkit():
+    con = sql.connect("tietokanta.db")
+    con.row_factory = sql.Row
+
+    cur = con.cursor()
+    cur.execute("select * from Videovinkit")
+
+    rows = cur.fetchall()
+    return rows

@@ -5,8 +5,11 @@ import db_functions
 
 @app.route('/list')
 def list():
-   rows = db_functions.get_kirjavinkit()
-   return render_template("list.html",rows = rows)
+   kirjarows = db_functions.get_kirjavinkit()
+   blogirows = db_functions.get_blogivinkit()
+   podrows = db_functions.get_podcastvinkit()
+   vidrows= db_functions.get_videovinkit()
+   return render_template("list.html",kirjarows = kirjarows,blogirows = blogirows,podrows = podrows,vidrows = vidrows)
 
 @app.route("/")
 def index():
