@@ -1,7 +1,9 @@
 from app import app
 import sqlite3 as sql
 from flask import Flask, render_template, request, redirect
-import db_functions
+from db_functions import DBFunctions
+
+db_functions = DBFunctions()
 
 @app.route("/")
 def index():
