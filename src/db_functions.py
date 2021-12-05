@@ -1,89 +1,102 @@
 import sqlite3 as sql
 
-def get_kirjavinkit():
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
+class DBFunctions:
+    def __init__(self, db="tietokanta.db"):
+        self.db = db
 
-    cur = con.cursor()
-    cur.execute("select * from Kirjavinkit")
+    def get_kirjavinkit(self):
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
 
-    rows = cur.fetchall()
-    return rows
+        cur = con.cursor()
+        cur.execute("select * from Kirjavinkit")
 
-def new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti):
-    komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) VALUES (:otsikko, :kirjoittaja, :isbn, :kommentti)"
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
-    con.isolation_level = None
-    cur = con.cursor()
-    try:
-        cur.execute(komento, {"otsikko":otsikko, "kirjoittaja":kirjoittaja, "isbn":isbn, "kommentti":kommentti})
-    except:
-        return False
-    return True
+        rows = cur.fetchall()
+        return rows
 
-def get_blogivinkit():
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
+    def new_kirjavinkki(self, otsikko, kirjoittaja, isbn, kommentti):
+        komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) VALUES (:otsikko, :kirjoittaja, :isbn, :kommentti)"
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"otsikko":otsikko, "kirjoittaja":kirjoittaja, "isbn":isbn, "kommentti":kommentti})
+        except:
+            return False
+        return True
 
-    cur = con.cursor()
-    cur.execute("select * from Blogivinkit")
+    def get_blogivinkit(self):
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
 
-    rows = cur.fetchall()
-    return rows
+        cur = con.cursor()
+        cur.execute("select * from Blogivinkit")
 
-def new_blogivinkki(nimi, kirjoittaja, url, kommentti):
-    komento = "INSERT INTO Blogivinkit (nimi, kirjoittaja, url, kommentti) VALUES (:nimi, :kirjoittaja, :url, :kommentti)"
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
-    con.isolation_level = None
-    cur = con.cursor()
-    try:
-        cur.execute(komento, {"nimi":nimi, "kirjoittaja":kirjoittaja, "url":url, "kommentti":kommentti})
-    except:
-        return False
-    return True
+        rows = cur.fetchall()
+        return rows
 
-def get_podcastvinkit():
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
+    def new_blogivinkki(self, nimi, kirjoittaja, url, kommentti):
+        komento = "INSERT INTO Blogivinkit (nimi, kirjoittaja, url, kommentti) VALUES (:nimi, :kirjoittaja, :url, :kommentti)"
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"nimi":nimi, "kirjoittaja":kirjoittaja, "url":url, "kommentti":kommentti})
+        except:
+            return False
+        return True
 
-    cur = con.cursor()
-    cur.execute("select * from Podcastvinkit")
+    def get_podcastvinkit(self):
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
 
-    rows = cur.fetchall()
-    return rows
+        cur = con.cursor()
+        cur.execute("select * from Podcastvinkit")
 
-def new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti):
-    komento = "INSERT INTO Podcastvinkit (nimi, tekija, jakson_nimi, kommentti) VALUES (:nimi, :tekija, :jakson_nimi, :kommentti)"
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
-    con.isolation_level = None
-    cur = con.cursor()
-    try:
-        cur.execute(komento, {"nimi":nimi, "tekija":tekija, "jakson_nimi":jakson_nimi, "kommentti":kommentti})
-    except:
-        return False
-    return True
+        rows = cur.fetchall()
+        return rows
 
-def get_videovinkit():
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
+    def new_podcastvinkki(self, nimi, tekija, jakson_nimi, kommentti):
+        komento = "INSERT INTO Podcastvinkit (nimi, tekija, jakson_nimi, kommentti) VALUES (:nimi, :tekija, :jakson_nimi, :kommentti)"
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"nimi":nimi, "tekija":tekija, "jakson_nimi":jakson_nimi, "kommentti":kommentti})
+        except:
+            return False
+        return True
 
-    cur = con.cursor()
-    cur.execute("select * from Videovinkit")
+    def get_videovinkit(self):
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
 
-    rows = cur.fetchall()
-    return rows
+        cur = con.cursor()
+        cur.execute("select * from Videovinkit")
 
-def new_videovinkki(nimi, tekija, url, kommentti):
-    komento = "INSERT INTO Videovinkit (nimi, tekija, url, kommentti) VALUES (:nimi, :tekija, :url, :kommentti)"
-    con = sql.connect("tietokanta.db")
-    con.row_factory = sql.Row
-    con.isolation_level = None
-    cur = con.cursor()
-    try:
-        cur.execute(komento, {"nimi":nimi, "tekija":tekija, "url":url, "kommentti":kommentti})
-    except:
-        return False
-    return True
+        rows = cur.fetchall()
+        return rows
+
+    def new_videovinkki(self, nimi, tekija, url, kommentti):
+        komento = "INSERT INTO Videovinkit (nimi, tekija, url, kommentti) VALUES (:nimi, :tekija, :url, :kommentti)"
+        con = sql.connect(self.db)
+        con.row_factory = sql.Row
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"nimi":nimi, "tekija":tekija, "url":url, "kommentti":kommentti})
+        except:
+            return False
+        return True
+
+    def tyhjenna(self):
+        con = sql.connect(self.db)
+        con.isolation_level = None
+        cur = con.cursor()
+        cur.execute("DELETE FROM Kirjavinkit")
+        cur.execute("DELETE FROM Blogivinkit")
+        cur.execute("DELETE FROM Podcastvinkit")
+        cur.execute("DELETE FROM Videovinkit")
