@@ -4,6 +4,7 @@ CREATE TABLE Kirjavinkit (
     kirjoittaja TEXT,
     isbn TEXT,
     kommentti TEXT
+    luettu text default "ei"
 );
 
 CREATE TABLE Blogivinkit (
@@ -12,6 +13,7 @@ CREATE TABLE Blogivinkit (
     kirjoittaja TEXT,
     url TEXT,
     kommentti TEXT
+    luettu text default "ei"
 );
 
 CREATE TABLE Videovinkki (
@@ -20,6 +22,7 @@ CREATE TABLE Videovinkki (
     tekija TEXT,
     url TEXT,
     kommentti TEXT
+    luettu text default "ei"
 );
 
 CREATE TABLE Podcastvinkki (
@@ -28,5 +31,6 @@ CREATE TABLE Podcastvinkki (
     tekija TEXT,
     jakson_nimi TEXT,
     kommentti TEXT
+    luettu text default "ei"
 );
 
