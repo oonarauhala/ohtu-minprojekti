@@ -8,8 +8,7 @@ Test Setup  Go To New Book Page
 Add A Book
     Input Book Info  testi  testikirjoittaja  01234  hyva kirja
     Submit vinkki
-    #List Page Should Be Open
-    Error Page Should Be Open
+    List Page Should Be Open
 
 Add A Book Wrong
     Input Book Info  testi  \  01234  hyva kirja
