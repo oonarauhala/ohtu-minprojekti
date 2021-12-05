@@ -54,6 +54,18 @@ def get_podcastvinkit():
     rows = cur.fetchall()
     return rows
 
+def new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti):
+    komento = "INSERT INTO Podcastvinkit (nimi, tekija, jakson_nimi, kommentti) VALUES (:nimi, :tekija, :jakson_nimi, :kommentti)"
+    con = sql.connect("tietokanta.db")
+    con.row_factory = sql.Row
+    con.isolation_level = None
+    cur = con.cursor()
+    try:
+        cur.execute(komento, {"nimi":nimi, "tekija":tekija, "jakson_nimi":jakson_nimi, "kommentti":kommentti})
+    except:
+        return False
+    return True
+
 def get_videovinkit():
     con = sql.connect("tietokanta.db")
     con.row_factory = sql.Row
@@ -63,3 +75,15 @@ def get_videovinkit():
 
     rows = cur.fetchall()
     return rows
+
+def new_videovinkki(nimi, tekija, url, kommentti):
+    komento = "INSERT INTO Videovinkit (nimi, tekija, url, kommentti) VALUES (:nimi, :tekija, :url, :kommentti)"
+    con = sql.connect("tietokanta.db")
+    con.row_factory = sql.Row
+    con.isolation_level = None
+    cur = con.cursor()
+    try:
+        cur.execute(komento, {"nimi":nimi, "tekija":tekija, "url":url, "kommentti":kommentti})
+    except:
+        return False
+    return True
