@@ -16,7 +16,7 @@ CREATE TABLE Blogivinkit (
     luettu text default "ei"
 );
 
-CREATE TABLE Videovinkki (
+CREATE TABLE Videovinkit (
     id INTEGER PRIMARY KEY,
     nimi TEXT,
     tekija TEXT,
@@ -25,7 +25,7 @@ CREATE TABLE Videovinkki (
     luettu text default "ei"
 );
 
-CREATE TABLE Podcastvinkki (
+CREATE TABLE Podcastvinkit (
     id INTEGER PRIMARY KEY,
     nimi TEXT,
     tekija TEXT,
