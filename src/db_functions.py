@@ -1,4 +1,5 @@
 import sqlite3 as sql
+from sqlite3.dbapi2 import OperationalError
 
 
 class DBFunctions:
@@ -16,7 +17,8 @@ class DBFunctions:
         return rows
 
     def new_kirjavinkki(self, otsikko, kirjoittaja, isbn, kommentti):
-        komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) VALUES (:otsikko, :kirjoittaja, :isbn, :kommentti)"
+        komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) \
+            VALUES (:otsikko, :kirjoittaja, :isbn, :kommentti)"
         con = sql.connect(self.db)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -31,7 +33,7 @@ class DBFunctions:
                     "kommentti": kommentti,
                 },
             )
-        except:
+        except OperationalError:
             return False
         return True
 
@@ -46,7 +48,8 @@ class DBFunctions:
         return rows
 
     def new_blogivinkki(self, nimi, kirjoittaja, url, kommentti):
-        komento = "INSERT INTO Blogivinkit (nimi, kirjoittaja, url, kommentti) VALUES (:nimi, :kirjoittaja, :url, :kommentti)"
+        komento = "INSERT INTO Blogivinkit (nimi, kirjoittaja, url, kommentti) \
+            VALUES (:nimi, :kirjoittaja, :url, :kommentti)"
         con = sql.connect(self.db)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -61,7 +64,7 @@ class DBFunctions:
                     "kommentti": kommentti,
                 },
             )
-        except:
+        except OperationalError:
             return False
         return True
 
@@ -76,7 +79,8 @@ class DBFunctions:
         return rows
 
     def new_podcastvinkki(self, nimi, tekija, jakson_nimi, kommentti):
-        komento = "INSERT INTO Podcastvinkit (nimi, tekija, jakson_nimi, kommentti) VALUES (:nimi, :tekija, :jakson_nimi, :kommentti)"
+        komento = "INSERT INTO Podcastvinkit (nimi, tekija, jakson_nimi, kommentti) \
+            VALUES (:nimi, :tekija, :jakson_nimi, :kommentti)"
         con = sql.connect(self.db)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -91,7 +95,7 @@ class DBFunctions:
                     "kommentti": kommentti,
                 },
             )
-        except:
+        except OperationalError:
             return False
         return True
 
@@ -106,7 +110,8 @@ class DBFunctions:
         return rows
 
     def new_videovinkki(self, nimi, tekija, url, kommentti):
-        komento = "INSERT INTO Videovinkit (nimi, tekija, url, kommentti) VALUES (:nimi, :tekija, :url, :kommentti)"
+        komento = "INSERT INTO Videovinkit (nimi, tekija, url, kommentti) \
+            VALUES (:nimi, :tekija, :url, :kommentti)"
         con = sql.connect(self.db)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -116,7 +121,7 @@ class DBFunctions:
                 komento,
                 {"nimi": nimi, "tekija": tekija, "url": url, "kommentti": kommentti},
             )
-        except:
+        except OperationalError:
             return False
         return True
 
@@ -136,6 +141,6 @@ class DBFunctions:
         cur = con.cursor()
         try:
             cur.execute(komento, {"isbn": isbn})
-        except:
+        except OperationalError:
             return False
         return True

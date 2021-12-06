@@ -1,6 +1,6 @@
 from app import app
 import sqlite3 as sql
-from flask import Flask, render_template, request, redirect
+from flask import render_template, request, redirect
 from db_functions import DBFunctions
 
 db_functions = DBFunctions()
@@ -44,8 +44,7 @@ def new_book():
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
         if db_functions.new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti):
             return redirect("/list")
-        else:
-            return render_template("error.html", viesti="Lisääminen epäonnistui")
+        return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 
 @app.route("/new_blog", methods=["GET", "POST"])
@@ -67,8 +66,8 @@ def new_blog():
 
         if db_functions.new_blogivinkki(nimi, kirjoittaja, url, kommentti):
             return redirect("/list")
-        else:
-            return render_template("error.html", viesti="Lisääminen epäonnistui")
+
+        return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 
 @app.route("/new_podcast", methods=["GET", "POST"])
@@ -89,8 +88,7 @@ def new_podcast():
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
         if db_functions.new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti):
             return redirect("/list")
-        else:
-            return render_template("error.html", viesti="Lisääminen epäonnistui")
+        return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 
 @app.route("/new_video", methods=["GET", "POST"])
@@ -111,8 +109,7 @@ def new_video():
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
         if db_functions.new_videovinkki(nimi, tekija, url, kommentti):
             return redirect("/list")
-        else:
-            return render_template("error.html", viesti="Lisääminen epäonnistui")
+        return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 
 @app.route("/mark_read")
@@ -120,5 +117,4 @@ def mark_read():
     isbn = request.args.get("isbn")
     if db_functions.merkitse_kirja_luetuksi(isbn):
         return redirect("/list")
-    else:
-        return render_template("/error.html", viesti="Merkityksi lukeminen epäonnistui")
+    return render_template("/error.html", viesti="Merkityksi lukeminen epäonnistui")
