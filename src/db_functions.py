@@ -1,5 +1,6 @@
 import sqlite3 as sql
 
+
 class DBFunctions:
     def __init__(self, db="tietokanta.db"):
         self.db = db
@@ -21,7 +22,15 @@ class DBFunctions:
         con.isolation_level = None
         cur = con.cursor()
         try:
-            cur.execute(komento, {"otsikko":otsikko, "kirjoittaja":kirjoittaja, "isbn":isbn, "kommentti":kommentti})
+            cur.execute(
+                komento,
+                {
+                    "otsikko": otsikko,
+                    "kirjoittaja": kirjoittaja,
+                    "isbn": isbn,
+                    "kommentti": kommentti,
+                },
+            )
         except:
             return False
         return True
@@ -43,7 +52,15 @@ class DBFunctions:
         con.isolation_level = None
         cur = con.cursor()
         try:
-            cur.execute(komento, {"nimi":nimi, "kirjoittaja":kirjoittaja, "url":url, "kommentti":kommentti})
+            cur.execute(
+                komento,
+                {
+                    "nimi": nimi,
+                    "kirjoittaja": kirjoittaja,
+                    "url": url,
+                    "kommentti": kommentti,
+                },
+            )
         except:
             return False
         return True
@@ -65,7 +82,15 @@ class DBFunctions:
         con.isolation_level = None
         cur = con.cursor()
         try:
-            cur.execute(komento, {"nimi":nimi, "tekija":tekija, "jakson_nimi":jakson_nimi, "kommentti":kommentti})
+            cur.execute(
+                komento,
+                {
+                    "nimi": nimi,
+                    "tekija": tekija,
+                    "jakson_nimi": jakson_nimi,
+                    "kommentti": kommentti,
+                },
+            )
         except:
             return False
         return True
@@ -87,7 +112,10 @@ class DBFunctions:
         con.isolation_level = None
         cur = con.cursor()
         try:
-            cur.execute(komento, {"nimi":nimi, "tekija":tekija, "url":url, "kommentti":kommentti})
+            cur.execute(
+                komento,
+                {"nimi": nimi, "tekija": tekija, "url": url, "kommentti": kommentti},
+            )
         except:
             return False
         return True
@@ -100,3 +128,14 @@ class DBFunctions:
         cur.execute("DELETE FROM Blogivinkit")
         cur.execute("DELETE FROM Podcastvinkit")
         cur.execute("DELETE FROM Videovinkit")
+
+    def merkitse_kirja_luetuksi(self, isbn):
+        komento = "UPDATE Kirjavinkit SET luettu = 'kyllä' WHERE isbn = :isbn;"
+        con = sql.connect(self.db)
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"isbn": isbn})
+        except:
+            return False
+        return True
