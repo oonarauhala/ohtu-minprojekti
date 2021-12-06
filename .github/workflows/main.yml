@@ -24,6 +24,11 @@ jobs:
         run: bash run_robot_tests.sh
       - name: Run unit tests
         run: poetry run pytest src/tests
+      - name: Coverage report
+        run: poetry run coverage xml
+      - name: Coverage report to Codecov
+        run: bash <(curl -s https://codecov.io/bash)
+
              
         
 
