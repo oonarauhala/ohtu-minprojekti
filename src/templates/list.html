@@ -1,103 +1,113 @@
 <!doctype html>
 <style>
-   td, th {
-        width: 75;
-        height: 50;
-        padding: 15px;
-        border-bottom: 1px solid rgb(0, 0, 0);
-        box-sizing: border-box;
-        font-family: serif;
-      }
+   td,
+   th {
+      width: 75;
+      height: 50;
+      padding: 15px;
+      border-bottom: 1px solid rgb(0, 0, 0);
+      box-sizing: border-box;
+      font-family: serif;
+   }
 </style>
 <html>
-   <title>Lukuvinkit</title>
-   <body>
-      <h2>Lukuvinkit:</h2>
-      <h3>Kirjat</h3>
-      <table style="border-style: solid; border-color: black;">
-         <thead>
-            <th style="background-color: darkgrey;">Otsikko</th>
-            <th style="background-color: darkgrey;">Kirjoittaja</th>
-            <th style="background-color: darkgrey;">ISBN</th>
-            <th style="background-color: darkgrey;">Kommentti</th>
-            <th style="background-color: darkgrey;">Luettu?</th>
-         </thead>
-         
-         {% for row in kirjarows %}
-            <tr>
-               <td>{{row.otsikko}}</td>
-               <td>{{row.kirjoittaja}}</td>
-               <td>{{row.isbn}}</td>
-               <td>{{row.kommentti}}</td>	
-               <td>{{row.luettu}}</td>	
-            </tr>
-         {% endfor %}
-      </table>
-      <br>
-      <h3>Blogit</h3>
-      <table style="border-style: solid; border-color: black;">
-         <thead>
-            <th style="background-color: darkgrey;">Nimi</th>
-            <th style="background-color: darkgrey;">Kirjoittaja</th>
-            <th style="background-color: darkgrey;">Url</th>
-            <th style="background-color: darkgrey;">Kommentti</th>
-            <th style="background-color: darkgrey;">Luettu?</th>
-         </thead>
-         
-         {% for row in blogirows %}
-            <tr>
-               <td>{{row.nimi}}</td>
-               <td>{{row.kirjoittaja}}</td>
-               <td>{{row.url}}</td>
-               <td>{{row.kommentti}}</td>	
-               <td>{{row.luettu}}</td>	
-            </tr>
-         {% endfor %}
-      </table>
-      <br>
-      <h3>Podcastit</h3>
-      <table style="border-style: solid; border-color: black;">
-         <thead>
-            <th style="background-color: darkgrey;">Nimi</th>
-            <th style="background-color: darkgrey;">Tekijä</th>
-            <th style="background-color: darkgrey;">Jakson nimi</th>
-            <th style="background-color: darkgrey;">Kommentti</th>
-            <th style="background-color: darkgrey;">Kuunneltu?</th>
-         </thead>
-         
-         {% for row in podrows %}
-            <tr>
-               <td>{{row.nimi}}</td>
-               <td>{{row.tekija}}</td>
-               <td>{{row.jakson_nimi}}</td>
-               <td>{{row.kommentti}}</td>	
-               <td>{{row.luettu}}</td>	
-            </tr>
-         {% endfor %}
-      </table>
-      <br>
-      <h3>Videot</h3>
-      <table style="border-style: solid; border-color: black;">
-         <thead>
-            <th style="background-color: darkgrey;">Nimi</th>
-            <th style="background-color: darkgrey;">Tekijä</th>
-            <th style="background-color: darkgrey;">Url</th>
-            <th style="background-color: darkgrey;">Kommentti</th>
-            <th style="background-color: darkgrey;">Katsottu?</th>
-         </thead>
-         
-         {% for row in vidrows %}
-            <tr>
-               <td>{{row.nimi}}</td>
-               <td>{{row.tekija}}</td>
-               <td>{{row.url}}</td>
-               <td>{{row.kommentti}}</td>	
-               <td>{{row.luettu}}</td>	
-            </tr>
-         {% endfor %}
-      </table>
-      <br>
-      <a href = "/">Go back to home page</a>
-      
-   </body>
+<title>Lukuvinkit</title>
+
+<body>
+   <h2>Lukuvinkit:</h2>
+   <h3>Kirjat</h3>
+   <table style="border-style: solid; border-color: black;">
+      <thead>
+         <th style="background-color: darkgrey;">Otsikko</th>
+         <th style="background-color: darkgrey;">Kirjoittaja</th>
+         <th style="background-color: darkgrey;">ISBN</th>
+         <th style="background-color: darkgrey;">Kommentti</th>
+         <th style="background-color: darkgrey;">Luettu?</th>
+      </thead>
+
+      {% for row in kirjarows %}
+      <tr>
+         <td>{{row.otsikko}}</td>
+         <td>{{row.kirjoittaja}}</td>
+         <td>{{row.isbn}}</td>
+         <td>{{row.kommentti}}</td>
+         <td>{{row.luettu}}</td>
+         <td>
+            <a href="/mark_read?isbn={{ row.isbn }}">
+               <div style="height:100%;width:100%">
+                  Merkitse luetuksi
+               </div>
+            </a>
+         </td>
+      </tr>
+      {% endfor %}
+   </table>
+   <br>
+   <h3>Blogit</h3>
+   <table style="border-style: solid; border-color: black;">
+      <thead>
+         <th style="background-color: darkgrey;">Nimi</th>
+         <th style="background-color: darkgrey;">Kirjoittaja</th>
+         <th style="background-color: darkgrey;">Url</th>
+         <th style="background-color: darkgrey;">Kommentti</th>
+         <th style="background-color: darkgrey;">Luettu?</th>
+      </thead>
+
+      {% for row in blogirows %}
+      <tr>
+         <td>{{row.nimi}}</td>
+         <td>{{row.kirjoittaja}}</td>
+         <td>{{row.url}}</td>
+         <td>{{row.kommentti}}</td>
+         <td>{{row.luettu}}</td>
+      </tr>
+      {% endfor %}
+   </table>
+   <br>
+   <h3>Podcastit</h3>
+   <table style="border-style: solid; border-color: black;">
+      <thead>
+         <th style="background-color: darkgrey;">Nimi</th>
+         <th style="background-color: darkgrey;">Tekijä</th>
+         <th style="background-color: darkgrey;">Jakson nimi</th>
+         <th style="background-color: darkgrey;">Kommentti</th>
+         <th style="background-color: darkgrey;">Kuunneltu?</th>
+      </thead>
+
+      {% for row in podrows %}
+      <tr>
+         <td>{{row.nimi}}</td>
+         <td>{{row.tekija}}</td>
+         <td>{{row.jakson_nimi}}</td>
+         <td>{{row.kommentti}}</td>
+         <td>{{row.luettu}}</td>
+      </tr>
+      {% endfor %}
+   </table>
+   <br>
+   <h3>Videot</h3>
+   <table style="border-style: solid; border-color: black;">
+      <thead>
+         <th style="background-color: darkgrey;">Nimi</th>
+         <th style="background-color: darkgrey;">Tekijä</th>
+         <th style="background-color: darkgrey;">Url</th>
+         <th style="background-color: darkgrey;">Kommentti</th>
+         <th style="background-color: darkgrey;">Katsottu?</th>
+      </thead>
+
+      {% for row in vidrows %}
+      <tr>
+         <td>{{row.nimi}}</td>
+         <td>{{row.tekija}}</td>
+         <td>{{row.url}}</td>
+         <td>{{row.kommentti}}</td>
+         <td>{{row.luettu}}</td>
+      </tr>
+      {% endfor %}
+   </table>
+   <br>
+   <a href="/">Go back to home page</a>
+
+</body>
+
 </html>
