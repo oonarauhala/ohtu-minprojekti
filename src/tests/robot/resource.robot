@@ -9,6 +9,7 @@ ${HOME URL}  http://${SERVER}
 ${NEW BOOK URL}  http://${SERVER}/new_book
 ${NEW BLOG URL}  http://${SERVER}/new_blog
 ${NEW VIDEO URL}  http://${SERVER}/new_video
+${NEW PODCAST URL}  http://${SERVER}/new_podcast
 ${LISTA URL}  http://${SERVER}/list
 
 
@@ -32,6 +33,9 @@ Go To New Blog Page
 
 Go To New Video Page
     Go To  ${NEW VIDEO URL}
+
+Go To New Podacst Page
+    Go To  ${NEW PODCAST URL}
 
 New Book Page Should Be Open
     Title Should Be  Uusi kirjavinkki
@@ -73,6 +77,13 @@ Input Video Info
     Input Text  nimi  ${nimi}
     Input Text  tekija  ${tekija}
     Input Text  url  ${url}
+    Input Text  kommentti  ${kommentti}
+
+Input Podcast Info
+    [Arguments]  ${nimi}  ${tekija}  ${jakson_nimi}  ${kommentti}
+    Input Text  nimi  ${nimi}
+    Input Text  tekija  ${tekija}
+    Input Text  jakson_nimi  ${jakson_nimi}
     Input Text  kommentti  ${kommentti}
 
 Submit vinkki

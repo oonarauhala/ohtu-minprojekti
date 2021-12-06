@@ -39,3 +39,14 @@ Add A Video Wrong
     Submit vinkki
     Error Page Should Be Open
 
+Add A Podcast
+    Go To New Podacst Page
+    Input Podcast Info  podacst  julien  eka jakso  paras podcast
+    Submit vinkki
+    List Page Should Be Open
+
+Add A Podcast Wrong
+    Go To New Podacst Page
+    Input Podcast Info  podcast  julien  \  ok
+    Submit vinkki
+    Error Page Should Be Open
