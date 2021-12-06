@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # käynnistetään Flask-palvelin taustalle (huomaa & komennon lopussa)
-poetry run python3 src/app.py &
+poetry run python3 src/index.py &
 
 # odetetaan, että palvelin on valmiina ottamaan vastaan pyyntöjä,
 # jolloin localhost:5000/ping antaa vastauksen statuskoodilla 200
