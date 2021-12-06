@@ -27,4 +27,15 @@ Add A Blog Wrong
     Submit vinkki
     Error Page Should Be Open
 
+Add A Video
+    Go To New Video Page
+    Input Video Info  testivideo  videon tekija  youtube.com/asgfhj  hyvä vidi
+    Submit vinkki
+    List Page Should Be Open
+
+Add A Video Wrong
+    Go To New Video Page
+    Input Video Info  testivideo  aaa  \  paras vidi
+    Submit vinkki
+    Error Page Should Be Open
 

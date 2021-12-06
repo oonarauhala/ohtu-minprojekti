@@ -8,6 +8,7 @@ ${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}
 ${NEW BOOK URL}  http://${SERVER}/new_book
 ${NEW BLOG URL}  http://${SERVER}/new_blog
+${NEW VIDEO URL}  http://${SERVER}/new_video
 ${LISTA URL}  http://${SERVER}/list
 
 
@@ -28,6 +29,9 @@ Go To New Book Page
 
 Go To New Blog Page
     Go To  ${NEW BLOG URL}
+
+Go To New Video Page
+    Go To  ${NEW VIDEO URL}
 
 New Book Page Should Be Open
     Title Should Be  Uusi kirjavinkki
@@ -64,6 +68,12 @@ Input Blog Info
     Input Text  url  ${url}
     Input Text  kommentti  ${kommentti}
 
+Input Video Info
+    [Arguments]  ${nimi}  ${tekija}  ${url}  ${kommentti}
+    Input Text  nimi  ${nimi}
+    Input Text  tekija  ${tekija}
+    Input Text  url  ${url}
+    Input Text  kommentti  ${kommentti}
 
 Submit vinkki
     Click Button  Luo vinkki
