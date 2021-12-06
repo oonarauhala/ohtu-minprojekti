@@ -1,6 +1,7 @@
 # Ohtu miniprojekti
 
 ![GitHub Actions](https://github.com/oonarauhala/ohtu-minprojekti/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/oonarauhala/ohtu-minprojekti/branch/master/graph/badge.svg?token=dp9vxjSeY3)](https://codecov.io/gh/oonarauhala/ohtu-minprojekti)
 
 Ohjelma on lukuvinkkisovellus ja on toteutettu ryhmätyönä ohjelmistotuotanto-kurssille.
 
@@ -33,9 +34,11 @@ Avaamalla terminaaliin ilmestynyt linkki ohjelma aukeaa.
 ## Definition of done
 
 * Product backlog ja sprint backlog ajan tasolla ja kattavat
-* Toiminnallisuus testattu Robot Frameworkilla
+* User storyt testattu Robot Frameworkilla
+* Yksikkötestit ainakin 70% testauskattavuudella
 * Kaikki testit menevät läpi ja uusin versio läpäisee CI:n
 * Koodityyli on yhtenäistä, arkkitehtuuri järkevää ja koodi on ylläpidettävää
+* Pylint ainakin 9/10
 * Käyttökokemus asiakasta miellyttävä
 * Asiakas pystyy näkemään koodin ja testien tilanteen CI-palvelusta
 
