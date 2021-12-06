@@ -83,4 +83,3 @@ def new_video():
          return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 
-app.run(debug = True)

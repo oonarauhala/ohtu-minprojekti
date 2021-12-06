@@ -21,7 +21,7 @@ poetry shell
 Käynnistä ohjelma komennolla
 
 ```
-python3 src/app.py
+python3 src/index.py
 ```
 
 Avaamalla terminaaliin ilmestynyt linkki ohjelma aukeaa.
