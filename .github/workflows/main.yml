@@ -23,7 +23,7 @@ jobs:
       - name: Run robot tests
         run: bash run_robot_tests.sh
       - name: Run unit tests
-        run: bash poetry run pytest src/tests
+        run: poetry run pytest src/tests
              
         
 
