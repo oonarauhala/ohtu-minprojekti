@@ -1,6 +1,5 @@
 import unittest
 from flask import Flask
-import sqlite3 as sql
 from app import app
 
 class TestApp(unittest.TestCase):
