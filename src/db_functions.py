@@ -134,13 +134,46 @@ class DBFunctions:
         cur.execute("DELETE FROM Podcastvinkit")
         cur.execute("DELETE FROM Videovinkit")
 
-    def merkitse_kirja_luetuksi(self, isbn):
-        komento = "UPDATE Kirjavinkit SET luettu = 'kyllä' WHERE isbn = :isbn;"
+    def merkitse_kirja_luetuksi(self, book_id):
+        komento = "UPDATE Kirjavinkit SET luettu = 'kyllä' WHERE id = :book_id;"
         con = sql.connect(self.database)
         con.isolation_level = None
         cur = con.cursor()
         try:
-            cur.execute(komento, {"isbn": isbn})
+            cur.execute(komento, {"book_id": book_id})
+        except OperationalError:
+            return False
+        return True
+
+    def merkitse_blogi_luetuksi(self,blog_id):
+        komento = "UPDATE Blogivinkit SET luettu = 'kyllä' WHERE id = :blog_id;"
+        con = sql.connect(self.database)
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"blog_id": blog_id})
+        except OperationalError:
+            return False
+        return True
+
+    def merkitse_podcast_kuunnelluksi(self, pod_id):
+        komento = "UPDATE Podcastvinkit SET luettu = 'kyllä' WHERE id = :pod_id;"
+        con = sql.connect(self.database)
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"pod_id": pod_id})
+        except OperationalError:
+            return False
+        return True
+
+    def merkitse_video_katsotuksi(self, video_id):
+        komento = "UPDATE Videovinkit SET luettu = 'kyllä' WHERE id = :video_id;"
+        con = sql.connect(self.database)
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(komento, {"video_id": video_id})
         except OperationalError:
             return False
         return True
