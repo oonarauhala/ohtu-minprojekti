@@ -14,6 +14,7 @@
 <title>Lukuvinkit</title>
 
 <body>
+   <a name="top"></a>
    <h2>Lukuvinkit:</h2>
    <h3>Kirjat</h3>
    <table style="border-style: solid; border-color: black;">
@@ -27,13 +28,14 @@
 
       {% for row in kirjarows %}
       <tr>
+         <td style="display: none;">{{row.id}}</td>
          <td>{{row.otsikko}}</td>
          <td>{{row.kirjoittaja}}</td>
          <td>{{row.isbn}}</td>
          <td>{{row.kommentti}}</td>
          <td>{{row.luettu}}</td>
          <td>
-            <a href="/mark_read?isbn={{ row.isbn }}">
+            <a href="/mark_read?id={{ row.id }}&category=book">
                <div style="height:100%;width:100%">
                   Merkitse luetuksi
                </div>
@@ -55,11 +57,19 @@
 
       {% for row in blogirows %}
       <tr>
+         <td style="display: none;">{{row.id}}</td>
          <td>{{row.nimi}}</td>
          <td>{{row.kirjoittaja}}</td>
          <td>{{row.url}}</td>
          <td>{{row.kommentti}}</td>
          <td>{{row.luettu}}</td>
+         <td>
+            <a href="/mark_read?id={{ row.id }}&category=blog">
+               <div style="height:100%;width:100%">
+                  Merkitse luetuksi
+               </div>
+            </a>
+         </td>
       </tr>
       {% endfor %}
    </table>
@@ -76,11 +86,19 @@
 
       {% for row in podrows %}
       <tr>
+         <td style="display: none;">{{row.id}}</td>
          <td>{{row.nimi}}</td>
          <td>{{row.tekija}}</td>
          <td>{{row.jakson_nimi}}</td>
          <td>{{row.kommentti}}</td>
          <td>{{row.luettu}}</td>
+         <td>
+            <a href="/mark_read?id={{ row.id }}&category=podcast">
+               <div style="height:100%;width:100%">
+                  Merkitse luetuksi
+               </div>
+            </a>
+         </td>
       </tr>
       {% endfor %}
    </table>
@@ -97,17 +115,25 @@
 
       {% for row in vidrows %}
       <tr>
+         <td style="display: none;">{{row.id}}</td>
          <td>{{row.nimi}}</td>
          <td>{{row.tekija}}</td>
          <td>{{row.url}}</td>
          <td>{{row.kommentti}}</td>
          <td>{{row.luettu}}</td>
+         <td>
+            <a href="/mark_read?id={{ row.id }}&category=video">
+               <div style="height:100%;width:100%">
+                  Merkitse luetuksi
+               </div>
+            </a>
+         </td>
       </tr>
       {% endfor %}
    </table>
    <br>
-   <a href="/">Go back to home page</a>
-
+   <a href="/">Palaa etusivulle</a><br>
+   <a href="#top">Palaa sivun alkuun</a>
 </body>
 
 </html>
