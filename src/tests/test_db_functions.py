@@ -99,3 +99,19 @@ class TestApp(unittest.TestCase):
         self.db_functions.merkitse_video_katsotuksi("1")
         result = self.db_functions.get_videovinkit()[0]["luettu"]
         self.assertEqual(result, "kyllä")
+
+    def test_merkitse_kirjavinkki_luetuksi_database_error(self):
+        result = self.db_functions2.merkitse_kirja_luetuksi("1")
+        self.assertFalse(result)
+
+    def test_merkitse_blogivinkki_luetuksei_database_error(self):
+        result = self.db_functions2.merkitse_blogi_luetuksi("1")
+        self.assertFalse(result)
+
+    def test_merkitse_podcastvinkki_luetuksei_database_error(self):
+        result = self.db_functions2.merkitse_podcast_kuunnelluksi("1")
+        self.assertFalse(result)
+
+    def test_merkitse_videovinkki_luetuksei_database_error(self):
+        result = self.db_functions2.merkitse_video_katsotuksi("1")
+        self.assertFalse(result)
