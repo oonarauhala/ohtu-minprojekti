@@ -113,7 +113,23 @@ def new_video():
 
 @app.route("/mark_read")
 def mark_read():
-    isbn = request.args.get("isbn")
-    if db_functions.merkitse_kirja_luetuksi(isbn):
-        return redirect("/list")
-    return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
+    id_field = request.args.get("id")
+    category = request.args.get("category")
+    if category == "book":
+        if db_functions.merkitse_kirja_luetuksi(id_field):
+            return redirect("/list")
+        return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
+    elif category == "blog":
+        if db_functions.merkitse_blogi_luetuksi(id_field):
+            return redirect("/list")
+        return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
+    elif category == "podcast":
+        if db_functions.merkitse_podcast_kuunnelluksi(id_field):
+            return redirect("/list")
+        return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
+    elif category == "video":
+        if db_functions.merkitse_video_katsotuksi(id_field):
+            return redirect("/list")
+        return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
+    else:
+        return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
