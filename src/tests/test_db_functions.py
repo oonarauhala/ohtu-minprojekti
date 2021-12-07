@@ -81,3 +81,21 @@ class TestApp(unittest.TestCase):
         self.db_functions.merkitse_kirja_luetuksi("1")
         result = self.db_functions.get_kirjavinkit()[0]["luettu"]
         self.assertEqual(result, "kyllä")
+
+    def test_blogivinkin_merkinta_luetuksi(self):
+        self.db_functions.new_blogivinkki("Testi", "Testaaja", "testi.fi", "lue")
+        self.db_functions.merkitse_blogi_luetuksi("1")
+        result = self.db_functions.get_blogivinkit()[0]["luettu"]
+        self.assertEqual(result, "kyllä")
+
+    def test_podcastvinkin_merkinta_kuunnelluksi(self):
+        self.db_functions.new_podcastvinkki("Testicasti", "Testaaja", "jakso 1", "tää on hyvä")
+        self.db_functions.merkitse_podcast_kuunnelluksi("1")
+        result = self.db_functions.get_podcastvinkit()[0]["luettu"]
+        self.assertEqual(result, "kyllä")
+
+    def test_videovinkin_merkinta_katsotuksi(self):
+        self.db_functions.new_videovinkki("Video", "Kuvaaja", "video.fi", "kato tää")
+        self.db_functions.merkitse_video_katsotuksi("1")
+        result = self.db_functions.get_videovinkit()[0]["luettu"]
+        self.assertEqual(result, "kyllä")
