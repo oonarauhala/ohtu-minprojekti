@@ -1,6 +1,5 @@
-from app import app
-import sqlite3 as sql
 from flask import render_template, request, redirect
+from app import app
 from db_functions import DBFunctions
 
 db_functions = DBFunctions()
@@ -12,7 +11,7 @@ def index():
 
 
 @app.route("/list")
-def list():
+def list_function():
     kirjarows = db_functions.get_kirjavinkit()
     blogirows = db_functions.get_blogivinkit()
     podrows = db_functions.get_podcastvinkit()
@@ -117,4 +116,4 @@ def mark_read():
     isbn = request.args.get("isbn")
     if db_functions.merkitse_kirja_luetuksi(isbn):
         return redirect("/list")
-    return render_template("/error.html", viesti="Merkityksi lukeminen epäonnistui")
+    return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
