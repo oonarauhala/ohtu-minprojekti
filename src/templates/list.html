@@ -5,25 +5,34 @@
       width: 75;
       height: 50;
       padding: 15px;
-      border-bottom: 1px solid rgb(0, 0, 0);
       box-sizing: border-box;
       font-family: serif;
    }
+   th {
+      background-color: lightgrey;
+   }
+   tr:nth-child(even) {
+        background-color:thistle;
+    }
+    tr:nth-child(odd) {
+       background-color:rgb(233, 233, 233);
+    }
 </style>
 <html>
 <title>Lukuvinkit</title>
 
 <body>
    <a name="top"></a>
-   <h2>Lukuvinkit:</h2>
+   <h1>Lukuvinkit:</h2>
    <h3>Kirjat</h3>
    <table style="border-style: solid; border-color: black;">
       <thead>
-         <th style="background-color: darkgrey;">Otsikko</th>
-         <th style="background-color: darkgrey;">Kirjoittaja</th>
-         <th style="background-color: darkgrey;">ISBN</th>
-         <th style="background-color: darkgrey;">Kommentti</th>
-         <th style="background-color: darkgrey;">Luettu?</th>
+         <th>Otsikko</th>
+         <th>Kirjoittaja</th>
+         <th>ISBN</th>
+         <th>Kommentti</th>
+         <th>Luettu?</th>
+         <th></th>
       </thead>
 
       {% for row in kirjarows %}
@@ -48,11 +57,12 @@
    <h3>Blogit</h3>
    <table style="border-style: solid; border-color: black;">
       <thead>
-         <th style="background-color: darkgrey;">Nimi</th>
-         <th style="background-color: darkgrey;">Kirjoittaja</th>
-         <th style="background-color: darkgrey;">Url</th>
-         <th style="background-color: darkgrey;">Kommentti</th>
-         <th style="background-color: darkgrey;">Luettu?</th>
+         <th>Nimi</th>
+         <th>Kirjoittaja</th>
+         <th>Url</th>
+         <th>Kommentti</th>
+         <th>Luettu?</th>
+         <th></th>
       </thead>
 
       {% for row in blogirows %}
@@ -77,11 +87,12 @@
    <h3>Podcastit</h3>
    <table style="border-style: solid; border-color: black;">
       <thead>
-         <th style="background-color: darkgrey;">Nimi</th>
-         <th style="background-color: darkgrey;">Tekijä</th>
-         <th style="background-color: darkgrey;">Jakson nimi</th>
-         <th style="background-color: darkgrey;">Kommentti</th>
-         <th style="background-color: darkgrey;">Kuunneltu?</th>
+         <th>Nimi</th>
+         <th>Tekijä</th>
+         <th>Jakson nimi</th>
+         <th>Kommentti</th>
+         <th>Kuunneltu?</th>
+         <th></th>
       </thead>
 
       {% for row in podrows %}
@@ -95,7 +106,7 @@
          <td>
             <a href="/mark_read?id={{ row.id }}&category=podcast">
                <div style="height:100%;width:100%">
-                  Merkitse luetuksi
+                  Merkitse kuunnelluksi
                </div>
             </a>
          </td>
@@ -106,11 +117,12 @@
    <h3>Videot</h3>
    <table style="border-style: solid; border-color: black;">
       <thead>
-         <th style="background-color: darkgrey;">Nimi</th>
-         <th style="background-color: darkgrey;">Tekijä</th>
-         <th style="background-color: darkgrey;">Url</th>
-         <th style="background-color: darkgrey;">Kommentti</th>
-         <th style="background-color: darkgrey;">Katsottu?</th>
+         <th>Nimi</th>
+         <th>Tekijä</th>
+         <th>Url</th>
+         <th>Kommentti</th>
+         <th>Katsottu?</th>
+         <th></th>
       </thead>
 
       {% for row in vidrows %}
@@ -124,7 +136,7 @@
          <td>
             <a href="/mark_read?id={{ row.id }}&category=video">
                <div style="height:100%;width:100%">
-                  Merkitse luetuksi
+                  Merkitse katsotuksi
                </div>
             </a>
          </td>
