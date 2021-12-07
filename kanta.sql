@@ -13,7 +13,7 @@ CREATE TABLE Kirjavinkit (
 );
 
 CREATE TABLE Blogivinkit (
-    id INTEGET PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     nimi TEXT,
     kirjoittaja TEXT,
     url TEXT,
