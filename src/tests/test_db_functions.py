@@ -117,6 +117,10 @@ class TestApp(unittest.TestCase):
         result = self.db_functions2.merkitse_video_katsotuksi("1")
         self.assertFalse(result)
 
+    def test_get_kayttajat(self):
+        result = list(self.db_functions.get_kayttajat())
+        self.assertEqual(len(result), 1)
+
     def test_uusi_kayttaja_onnistuneesti(self):
         self.db_functions.uusi_kayttaja("matti", generate_password_hash("kissa123"))
         result = list(self.db_functions.get_kayttajat())
@@ -128,7 +132,4 @@ class TestApp(unittest.TestCase):
         result = list(self.db_functions.get_kayttajat())
         self.assertEqual(len(result), 1)
 
-    def test_get_kayttajat_tyhja(self):
-        result = list(self.db_functions.get_kayttajat())
-        self.assertEqual(len(result), 0)
 
