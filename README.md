@@ -54,6 +54,3 @@ pytest src
 ## License
 
 [MIT-License](https://github.com/oonarauhala/ohtu-minprojekti/blob/master/LICENSE)
-
-
-
