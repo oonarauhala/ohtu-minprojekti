@@ -1,5 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
+Library  String
 
 *** Variables ***
 ${SERVER}  localhost:5000
@@ -102,5 +103,5 @@ Input Register Info
     Input Text  salasana_uudelleen  ${salasana_uudelleen} 
 
 Create Random Username
-    ${RANDOM NAME}  Generate Random String  5  [LETTERS]
+    ${RANDOM NAME}  Generate Random String  5  [LETTERS][NUMBERS]
     [Return]  ${RANDOM NAME}
