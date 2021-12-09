@@ -11,7 +11,7 @@ ${NEW BLOG URL}  http://${SERVER}/new_blog
 ${NEW VIDEO URL}  http://${SERVER}/new_video
 ${NEW PODCAST URL}  http://${SERVER}/new_podcast
 ${LISTA URL}  http://${SERVER}/list
-
+${REGISTER URL}  http://${SERVER}/register
 
 *** Keywords ***
 Open And Configure Browser
@@ -36,6 +36,9 @@ Go To New Video Page
 
 Go To New Podacst Page
     Go To  ${NEW PODCAST URL}
+
+Go To Register Page
+    Go To  ${REGISTER URL}
 
 New Book Page Should Be Open
     Title Should Be  Uusi kirjavinkki
@@ -89,3 +92,15 @@ Input Podcast Info
 Submit vinkki
     Click Button  Luo vinkki
 
+Submit Registration
+    Click Button  Luo käyttäjätunnus
+
+Input Register Info
+    [Arguments]  ${tunnus}  ${salasana}  ${salasana_uudelleen}
+    Input Text  tunnus  ${tunnus}
+    Input Text  salasana  ${salasana}
+    Input Text  salasana_uudelleen  ${salasana_uudelleen} 
+
+Create Random Username
+    ${RANDOM NAME}  Generate Random String  5  [LETTERS]
+    [Return]  ${RANDOM NAME}
