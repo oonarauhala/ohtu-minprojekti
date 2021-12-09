@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+   <title>Rekisteröityminen</title>
+   <body>
+      <h1>Luo uusi käyttäjä</h1>
+      <br>
+      <ul>
+         <form action="/register" method="POST">
+         <p>Anna käyttäjätunnus, joka on vähintään 5 merkkiä pitkä:<br>
+         <input type="text" name="tunnus"></p>
+         <p>Anna salasana, joka on vähintään 8 merkkiä pitkä:<br>
+         <input type="password" name="salasana"></p>
+         <p>Anna sama salasana uudelleen:<br>
+         <input type="password" name="salasana_uudelleen"></p>
+         <input type="submit" value="Luo käyttäjätunnus">
+      </ul>
+   </body>
+</html>

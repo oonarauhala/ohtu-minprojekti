@@ -1,5 +1,5 @@
 import sqlite3 as sql
-from sqlite3.dbapi2 import OperationalError
+from sqlite3.dbapi2 import OperationalError, IntegrityError
 
 
 class DBFunctions:
@@ -175,5 +175,24 @@ class DBFunctions:
         try:
             cur.execute(komento, {"video_id": video_id})
         except OperationalError:
+            return False
+        return True
+
+    def uusi_kayttaja(self, tunnus, salasana):
+        komento = "INSERT INTO Kayttajat (tunnus, salasana) \
+            VALUES (:tunnus, :salasana)"
+        con = sql.connect(self.database)
+        con.row_factory = sql.Row
+        con.isolation_level = None
+        cur = con.cursor()
+        try:
+            cur.execute(
+                komento,
+                {
+                    "tunnus": tunnus,
+                    "salasana": salasana
+                },
+            )
+        except IntegrityError:
             return False
         return True

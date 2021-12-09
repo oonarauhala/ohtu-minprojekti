@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS Kirjavinkit;
 DROP TABLE IF EXISTS Blogivinkit;
 DROP TABLE IF EXISTS Videovinkit;
 DROP TABLE IF EXISTS Podcastvinkit;
+DROP TABLE IF EXISTS Kayttajat;
 
 CREATE TABLE Kirjavinkit (
     id INTEGER PRIMARY KEY,
@@ -9,7 +10,8 @@ CREATE TABLE Kirjavinkit (
     kirjoittaja TEXT,
     isbn TEXT,
     kommentti TEXT,
-    luettu text default "ei"
+    luettu text default "ei",
+    kayttaja_id INTEGER REFERENCES Kayttajat (id)
 );
 
 CREATE TABLE Blogivinkit (
@@ -18,7 +20,8 @@ CREATE TABLE Blogivinkit (
     kirjoittaja TEXT,
     url TEXT,
     kommentti TEXT,
-    luettu text default "ei"
+    luettu text default "ei",
+    kayttaja_id INTEGER REFERENCES Kayttajat (id)
 );
 
 CREATE TABLE Videovinkit (
@@ -27,7 +30,8 @@ CREATE TABLE Videovinkit (
     tekija TEXT,
     url TEXT,
     kommentti TEXT,
-    luettu text default "ei"
+    luettu text default "ei",
+    kayttaja_id INTEGER REFERENCES Kayttajat (id)
 );
 
 CREATE TABLE Podcastvinkit (
@@ -36,6 +40,12 @@ CREATE TABLE Podcastvinkit (
     tekija TEXT,
     jakson_nimi TEXT,
     kommentti TEXT,
-    luettu text default "ei"
+    luettu text default "ei",
+    kayttaja_id INTEGER REFERENCES Kayttajat (id)
 );
 
+CREATE TABLE Kayttajat (
+    id INTEGER PRIMARY KEY,
+    tunnus TEXT UNIQUE,
+    salasana TEXT
+);

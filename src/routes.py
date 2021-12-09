@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect
 from app import app
 from db_functions import DBFunctions
+from werkzeug.security import check_password_hash, generate_password_hash
 
 db_functions = DBFunctions()
 
@@ -110,6 +111,25 @@ def new_video():
             return redirect("/list")
         return render_template("error.html", viesti="Lisääminen epäonnistui")
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "GET":
+        return render_template("register.html")
+    if request.method == "POST":
+        tunnus = request.form["tunnus"]
+        salasana = request.form["salasana"]
+        salasana_uudelleen = request.form["salasana_uudelleen"]
+        if len(tunnus) < 5 or len(tunnus.split()) == 0:
+            return render_template("error.html", viesti="Anna käyttjätunnus, joka on vähintään 5 merkkiä pitkä")
+        if len(salasana) < 8 or len(salasana.split()) == 0:
+            return render_template("error.html", viesti="Anna salasana, joka on vähintään 8 merkkiä pitkä")
+        if salasana != salasana_uudelleen:
+            return render_template("error.html", viesti="Antamasi salasanat eivät täsmää")
+        hash_arvo = generate_password_hash(salasana)
+        if db_functions.uusi_kayttaja(tunnus, hash_arvo):
+            return redirect("/")
+        else:
+            return render_template("error.html", viesti="Antamasi käyttäjätunnus on jo käytössä")
 
 @app.route("/mark_read")
 def mark_read():
