@@ -1,5 +1,6 @@
 import unittest
 from db_functions import DBFunctions
+from werkzeug.security import generate_password_hash
 
 
 class TestApp(unittest.TestCase):
@@ -115,3 +116,19 @@ class TestApp(unittest.TestCase):
     def test_merkitse_videovinkki_luetuksei_database_error(self):
         result = self.db_functions2.merkitse_video_katsotuksi("1")
         self.assertFalse(result)
+
+    def test_uusi_kayttaja_onnistuneesti(self):
+        self.db_functions.uusi_kayttaja("matti", generate_password_hash("kissa123"))
+        result = list(self.db_functions.get_kayttajat())
+        self.assertEqual(len(result), 1)
+
+    def test_uusi_kayttaja_ei_onnistuneesti(self):
+        self.db_functions.uusi_kayttaja("matti", generate_password_hash("kissa123"))
+        self.db_functions.uusi_kayttaja("matti", generate_password_hash("koira123"))
+        result = list(self.db_functions.get_kayttajat())
+        self.assertEqual(len(result), 1)
+
+    def test_get_kayttajat_tyhja(self):
+        result = list(self.db_functions.get_kayttajat())
+        self.assertEqual(len(result), 0)
+

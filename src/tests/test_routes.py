@@ -28,3 +28,7 @@ class TestRoutes(unittest.TestCase):
     def test_new_video_page(self):
         response = self.app.get("/new_video")
         self.assertEqual(response.status_code, 200)
+
+    def test_register_page(self):
+        response = self.app.get("/register")
+        self.assertEqual(response.status_code, 200)

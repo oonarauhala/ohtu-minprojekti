@@ -178,6 +178,17 @@ class DBFunctions:
             return False
         return True
 
+    def get_kayttajat(self):
+        con = sql.connect(self.database)
+        con.row_factory = sql.Row
+
+        cur = con.cursor()
+        cur.execute("select * from Kayttajat")
+
+        rows = cur.fetchall()
+        return rows
+
+
     def uusi_kayttaja(self, tunnus, salasana):
         komento = "INSERT INTO Kayttajat (tunnus, salasana) \
             VALUES (:tunnus, :salasana)"
