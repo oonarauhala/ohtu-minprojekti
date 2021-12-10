@@ -6,6 +6,13 @@ from isbnlib import meta
 
 db_functions = DBFunctions()
 
+def check_no_empty_fields(*fields):
+    """
+    Checks if any of the provided fields are empty
+    
+    Returns: True if any of the fields is empty
+    """
+    return not all(fields)
 
 @app.route("/")
 def index():
@@ -36,15 +43,12 @@ def new_book():
         kirjoittaja = request.form["kirjoittaja"]
         isbn = request.form["isbn"]
         kommentti = request.form["kommentti"]
-        if (
-            len(otsikko.split()) == 0
-            or len(kirjoittaja.split()) == 0
-            or len(isbn.split()) == 0
-            or len(kommentti.split()) == 0
-        ):
+        if check_no_empty_fields(otsikko, kirjoittaja, isbn, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
+
         if db_functions.new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti):
             return redirect("/list")
+
         return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 
@@ -57,12 +61,7 @@ def new_blog():
         kirjoittaja = request.form["kirjoittaja"]
         url = request.form["url"]
         kommentti = request.form["kommentti"]
-        if (
-            len(nimi.split()) == 0
-            or len(kirjoittaja.split()) == 0
-            or len(url.split()) == 0
-            or len(kommentti.split()) == 0
-        ):
+        if check_no_empty_fields(nimi, kirjoittaja, url, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
         if db_functions.new_blogivinkki(nimi, kirjoittaja, url, kommentti):
@@ -80,15 +79,12 @@ def new_podcast():
         tekija = request.form["tekija"]
         jakson_nimi = request.form["jakson_nimi"]
         kommentti = request.form["kommentti"]
-        if (
-            len(nimi.split()) == 0
-            or len(tekija.split()) == 0
-            or len(jakson_nimi.split()) == 0
-            or len(kommentti.split()) == 0
-        ):
+        if check_no_empty_fields(nimi, tekija, jakson_nimi, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
+
         if db_functions.new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti):
             return redirect("/list")
+
         return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 
@@ -101,15 +97,12 @@ def new_video():
         tekija = request.form["tekija"]
         url = request.form["url"]
         kommentti = request.form["kommentti"]
-        if (
-            len(nimi.split()) == 0
-            or len(tekija.split()) == 0
-            or len(url.split()) == 0
-            or len(kommentti.split()) == 0
-        ):
+        if check_no_empty_fields(nimi, tekija, url, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
+
         if db_functions.new_videovinkki(nimi, tekija, url, kommentti):
             return redirect("/list")
+
         return render_template("error.html", viesti="Lisääminen epäonnistui")
 
 @app.route("/register", methods=["GET", "POST"])
