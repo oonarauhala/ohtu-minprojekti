@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 db_functions = DBFunctions()
 
-def check_no_empty_fields(*fields):
+def validate_fields(*fields):
     """
     Checks if any of the provided fields are empty
     
@@ -16,7 +16,6 @@ def check_no_empty_fields(*fields):
 @app.route("/")
 def index():
     return render_template("index.html")
-
 
 @app.route("/list")
 def list_function():
@@ -32,7 +31,6 @@ def list_function():
         vidrows=vidrows,
     )
 
-
 @app.route("/new_book", methods=["GET", "POST"])
 def new_book():
     if request.method == "GET":
@@ -42,14 +40,13 @@ def new_book():
         kirjoittaja = request.form["kirjoittaja"]
         isbn = request.form["isbn"]
         kommentti = request.form["kommentti"]
-        if check_no_empty_fields(otsikko, kirjoittaja, isbn, kommentti):
+        if validate_fields(otsikko, kirjoittaja, isbn, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
         if db_functions.new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
-
 
 @app.route("/new_blog", methods=["GET", "POST"])
 def new_blog():
@@ -60,14 +57,13 @@ def new_blog():
         kirjoittaja = request.form["kirjoittaja"]
         url = request.form["url"]
         kommentti = request.form["kommentti"]
-        if check_no_empty_fields(nimi, kirjoittaja, url, kommentti):
+        if validate_fields(nimi, kirjoittaja, url, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
         if db_functions.new_blogivinkki(nimi, kirjoittaja, url, kommentti):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
-
 
 @app.route("/new_podcast", methods=["GET", "POST"])
 def new_podcast():
@@ -78,14 +74,13 @@ def new_podcast():
         tekija = request.form["tekija"]
         jakson_nimi = request.form["jakson_nimi"]
         kommentti = request.form["kommentti"]
-        if check_no_empty_fields(nimi, tekija, jakson_nimi, kommentti):
+        if validate_fields(nimi, tekija, jakson_nimi, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
         if db_functions.new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
-
 
 @app.route("/new_video", methods=["GET", "POST"])
 def new_video():
@@ -96,7 +91,7 @@ def new_video():
         tekija = request.form["tekija"]
         url = request.form["url"]
         kommentti = request.form["kommentti"]
-        if check_no_empty_fields(nimi, tekija, url, kommentti):
+        if validate_fields(nimi, tekija, url, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
         if db_functions.new_videovinkki(nimi, tekija, url, kommentti):
