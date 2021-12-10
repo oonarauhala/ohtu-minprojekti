@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <title>Confirm</title>
+    <body>
+        <h2>Haluatko lisätä kirjan?</h2>
+        <p>{{title}}</p>
+        <p>{{author}}</p>
+        <p>{{isbn}}</p>
+        <form action="/new_book" method="POST">
+            <input type="hidden" name="otsikko" value="{{title}}">
+            <input type="hidden" name="kirjoittaja" value="{{author}}">
+            <input type="hidden" name="isbn" value="{{isbn}}">
+            <p>Lisää kommentti:</p>
+            <textarea name="kommentti" rows="5" cols="40"></textarea><br>
+            <input type="submit" value="Uusi kirjavinkki">
+        </form>
+        <a href="/new_book">Peruuta</a>
+    </body>
+</html>

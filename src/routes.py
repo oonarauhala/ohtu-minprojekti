@@ -1,7 +1,8 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from app import app
 from db_functions import DBFunctions
 from werkzeug.security import check_password_hash, generate_password_hash
+from isbnlib import meta
 
 db_functions = DBFunctions()
 
@@ -153,3 +154,22 @@ def mark_read():
         return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
     else:
         return render_template("/error.html", viesti="Luetuksi merkitseminen epäonnistui")
+
+@app.route("/confirm_book", methods=["GET", "POST"])
+def confirm_book():
+    author = request.args.get("author")
+    title = request.args.get("title")
+    isbn = request.args.get("isbn")
+    return render_template("/confirm.html", author=author, title=title, isbn=isbn)
+
+
+@app.route("/isbn_search", methods=["POST"])
+def isbn_search():
+    isbn = request.form["isbn"]
+    try:
+        book = meta(isbn, service="default")
+        author = str(book["Authors"][0])
+        title = str(book["Title"])
+        return redirect(url_for("confirm_book", title=title, author=author, isbn=isbn))
+    except Exception:
+        return render_template("/error.html", viesti="invalid ISBN")
