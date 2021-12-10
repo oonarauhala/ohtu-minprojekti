@@ -119,7 +119,7 @@ class TestApp(unittest.TestCase):
 
     def test_get_kayttajat(self):
         result = list(self.db_functions.get_kayttajat())
-        self.assertEqual(len(result), 1)
+        self.assertEqual(len(result), 0)
 
     def test_uusi_kayttaja_onnistuneesti(self):
         self.db_functions.uusi_kayttaja("matti", generate_password_hash("kissa123"))
@@ -127,8 +127,8 @@ class TestApp(unittest.TestCase):
         self.assertEqual(len(result), 1)
 
     def test_uusi_kayttaja_ei_onnistuneesti(self):
-        self.db_functions.uusi_kayttaja("matti", generate_password_hash("kissa123"))
-        self.db_functions.uusi_kayttaja("matti", generate_password_hash("koira123"))
+        self.db_functions.uusi_kayttaja("salla", generate_password_hash("kissa123"))
+        self.db_functions.uusi_kayttaja("salla", generate_password_hash("koira123"))
         result = list(self.db_functions.get_kayttajat())
         self.assertEqual(len(result), 1)
 

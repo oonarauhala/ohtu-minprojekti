@@ -133,6 +133,7 @@ class DBFunctions:
         cur.execute("DELETE FROM Blogivinkit")
         cur.execute("DELETE FROM Podcastvinkit")
         cur.execute("DELETE FROM Videovinkit")
+        cur.execute("DELETE FROM Kayttajat")
 
     def merkitse_kirja_luetuksi(self, book_id):
         komento = "UPDATE Kirjavinkit SET luettu = 'kyllä' WHERE id = :book_id;"
