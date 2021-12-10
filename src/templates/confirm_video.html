@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <title>Confirm video</title>
+    <body>
+        <h2>Haluatko lisätä videon?</h2>
+        <p>{{title}}</p>
+        <p>{{author}}</p>
+        <p>{{url}}</p>
+        <form action="/new_video" method="POST">
+            <input type="hidden" name="nimi" value="{{title}}">
+            <input type="hidden" name="tekija" value="{{author}}">
+            <input type="hidden" name="url" value="{{url}}">
+            <p>Lisää kommentti:</p>
+            <textarea name="kommentti" rows="5" cols="40"></textarea><br>
+            <input type="submit" value="Uusi videovinkki">
+        </form>
+        <a href="/new_video">Peruuta</a>
+    </body>
+</html>

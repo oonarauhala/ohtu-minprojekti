@@ -2,6 +2,12 @@
 <html>
     <title>Uusi videovinkki</title>
    <body>
+      <h2>Etsi Youtube-video ID:n perusteella:</h2>
+      <form action="/url_search" method="POST">
+         <p>Syötä ID (linkin perässä yhtäsuuruusmerkin jälkeen olevat merkit):<br>
+         <input type="text" name="video_id" size="30" maxlength="17"></p>
+         <input type="submit" value="Etsi">
+      </form>
       <h2>Lisää uusi videovinkki</h2>
       <form action="/new_video" method="POST">
       <p>Nimi:<br>

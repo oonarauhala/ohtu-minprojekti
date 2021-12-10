@@ -3,6 +3,9 @@ from app import app
 from db_functions import DBFunctions
 from werkzeug.security import check_password_hash, generate_password_hash
 from isbnlib import meta
+import urllib.request
+import json
+import urllib
 
 db_functions = DBFunctions()
 
@@ -161,3 +164,27 @@ def isbn_search():
         return redirect(url_for("confirm_book", title=title, author=author, isbn=isbn))
     except Exception:
         return render_template("/error.html", viesti="invalid ISBN")
+
+@app.route("/url_search", methods=["POST"])
+def url_search():
+    video_id = request.form["video_id"]
+    try:
+        params = {"format": "json", "url": "https://www.youtube.com/watch?v=%s" % video_id}
+        url = "https://www.youtube.com/oembed"
+        query_string = urllib.parse.urlencode(params)
+        url = url + "?" + query_string
+        with urllib.request.urlopen(url) as response:
+            response_text = response.read()
+            data = json.loads(response_text.decode())
+            author = str(data["author_name"])
+            title = str(data["title"])
+            return redirect(url_for("confirm_video", title=title, author=author, url="https://www.youtube.com/watch?v=%s" % video_id))
+    except Exception:
+        return render_template("/error.html", viesti="invalid ID")
+
+@app.route("/confirm_video", methods=["GET", "POST"])
+def confirm_video():
+    author = request.args.get("author")
+    title = request.args.get("title")
+    url = request.args.get("url")
+    return render_template("/confirm_video.html", author=author, title=title, url=url)
