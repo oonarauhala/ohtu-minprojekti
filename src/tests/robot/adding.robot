@@ -15,6 +15,16 @@ Add A Book Wrong
     Submit vinkki
     Error Page Should Be Open
 
+Add A Book By ISBN
+    Input ISBN  951-31-1146-6
+    Submit ISBN
+    Confirm Page Should Be Open
+
+Add A Book By Wrong ISBN
+    Input ISBN  123
+    Submit ISBN
+    Error Page Should Be Open
+
 Add A Blog
     Go To New Blog Page
     Input Blog Info  testi  testikirjoittaja  wwww.fi.fi  hyva blogi
@@ -50,3 +60,4 @@ Add A Podcast Wrong
     Input Podcast Info  podcast  julien  \  ok
     Submit vinkki
     Error Page Should Be Open
+
