@@ -208,3 +208,12 @@ class DBFunctions:
         except IntegrityError:
             return False
         return True
+
+    def etsi_kayttaja(self, username):
+        komento =   "SELECT * FROM Kayttajat WHERE tunnus=:username"
+        con = sql.connect(self.database)
+        con.row_factory = sql.Row
+        con.isolation_level = None
+        cur = con.cursor()
+        user = cur.execute(komento, {"username":username}).fetchone()
+        return user
