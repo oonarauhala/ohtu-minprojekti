@@ -56,6 +56,9 @@ New Podcast Page Should Be Open
 Confirm Page Should Be Open
     Title Should be  Confirm
 
+Confirm Video Page Should Be Open
+    Title Should Be  Confirm video
+
 Go To Lista Page
     Go To  ${LISTA URL}
 
@@ -75,6 +78,10 @@ Input Book Info
 Input ISBN
     [Arguments]  ${isbn}
     Input Text  book_isbn  ${isbn}
+
+Input URL
+    [Arguments]  ${url}
+    Input Text  video_id  ${url}
 
 Input Blog Info
     [Arguments]  ${nimi}  ${kirjoittaja}  ${url}  ${kommentti}
@@ -100,7 +107,7 @@ Input Podcast Info
 Submit vinkki
     Click Button  Luo vinkki
 
-Submit ISBN
+Submit ISBN/URL
     Click Button  Etsi
 
 Submit Registration

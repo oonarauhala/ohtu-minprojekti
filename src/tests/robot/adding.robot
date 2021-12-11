@@ -17,12 +17,12 @@ Add A Book Wrong
 
 Add A Book By ISBN
     Input ISBN  951-31-1146-6
-    Submit ISBN
+    Submit ISBN/URL
     Confirm Page Should Be Open
 
 Add A Book By Wrong ISBN
     Input ISBN  123
-    Submit ISBN
+    Submit ISBN/URL
     Error Page Should Be Open
 
 Add A Blog
@@ -47,6 +47,18 @@ Add A Video Wrong
     Go To New Video Page
     Input Video Info  testivideo  aaa  \  paras vidi
     Submit vinkki
+    Error Page Should Be Open
+
+Add A Video By URL
+    Go To New Video Page
+    Input URL  https://www.youtube.com/watch?v=kffacxfA7G4
+    Submit ISBN/URL
+    Confirm Video Page Should Be Open
+
+Add A Video By Wrong URL
+    Go To New Video Page
+    Input URL  www.youtube.com
+    Submit ISBN/URL
     Error Page Should Be Open
 
 Add A Podcast
