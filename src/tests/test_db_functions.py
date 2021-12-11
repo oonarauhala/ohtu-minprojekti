@@ -132,4 +132,16 @@ class TestApp(unittest.TestCase):
         result = list(self.db_functions.get_kayttajat())
         self.assertEqual(len(result), 1)
 
+    def test_etsi_kayttaja_onnistuneesti(self):
+        self.db_functions.uusi_kayttaja("eeva", generate_password_hash("testi1234"))
+        result = self.db_functions.etsi_kayttaja("eeva")
+        self.assertEqual(result["tunnus"], "eeva")
 
+    def test_etsi_kayttaja_jota_ei_ole(self):
+        result = self.db_functions.etsi_kayttaja("eeva")
+        self.assertEqual(result, None)
+
+    def test_get_kayttaja_id(self):
+        self.db_functions.uusi_kayttaja("eeva", generate_password_hash("testi1234"))
+        result = self.db_functions.get_kayttaja_id("eeva")
+        self.assertEqual(result, 1)
