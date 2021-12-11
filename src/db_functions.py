@@ -6,19 +6,21 @@ class DBFunctions:
     def __init__(self, db="tietokanta.db"):
         self.database = db
 
-    def get_kirjavinkit(self):
+    def get_kirjavinkit(self, id):
         con = sql.connect(self.database)
         con.row_factory = sql.Row
+        con.isolation_level = None
 
         cur = con.cursor()
-        cur.execute("select * from Kirjavinkit")
+        komento = "select * from Kirjavinkit where kayttaja_id=:id"
 
-        rows = cur.fetchall()
+        rows = cur.execute(komento, {"id":id}).fetchall()
+
         return rows
 
-    def new_kirjavinkki(self, otsikko, kirjoittaja, isbn, kommentti):
-        komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti) \
-            VALUES (:otsikko, :kirjoittaja, :isbn, :kommentti)"
+    def new_kirjavinkki(self, otsikko, kirjoittaja, isbn, kommentti, kayttaja_id):
+        komento = "INSERT INTO Kirjavinkit (Otsikko, kirjoittaja, isbn, kommentti, kayttaja_id) \
+            VALUES (:otsikko, :kirjoittaja, :isbn, :kommentti, :kayttaja_id)"
         con = sql.connect(self.database)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -31,6 +33,7 @@ class DBFunctions:
                     "kirjoittaja": kirjoittaja,
                     "isbn": isbn,
                     "kommentti": kommentti,
+                    "kayttaja_id": kayttaja_id
                 },
             )
         except OperationalError:
@@ -217,3 +220,13 @@ class DBFunctions:
         cur = con.cursor()
         user = cur.execute(komento, {"username":username}).fetchone()
         return user
+
+    def get_kayttaja_id(self, tunnus):
+        komento =   "SELECT id FROM Kayttajat WHERE tunnus=:tunnus"
+        con = sql.connect(self.database)
+        con.row_factory = sql.Row
+        con.isolation_level = None
+        cur = con.cursor()
+        id = cur.execute(komento, {"tunnus":tunnus}).fetchone()[0]
+        return id
+

@@ -23,7 +23,7 @@ def index():
 
 @app.route("/list")
 def list_function():
-    kirjarows = db_functions.get_kirjavinkit()
+    kirjarows = db_functions.get_kirjavinkit(session["user_id"])
     blogirows = db_functions.get_blogivinkit()
     podrows = db_functions.get_podcastvinkit()
     vidrows = db_functions.get_videovinkit()
@@ -44,10 +44,10 @@ def new_book():
         kirjoittaja = request.form["kirjoittaja"]
         isbn = request.form["isbn"]
         kommentti = request.form["kommentti"]
-        if validate_fields(otsikko, kirjoittaja, isbn, kommentti):
+        if validate_fields(otsikko, kirjoittaja, isbn, kommentti, session["user_id"]):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
-        if db_functions.new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti):
+        if db_functions.new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti, session["user_id"]):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
@@ -203,9 +203,11 @@ def login():
         if not check_password_hash(user["salasana"], password):
             return render_template("/error.html", viesti="invalid password")
         session["username"] = username
+        session["user_id"] = db_functions.get_kayttaja_id(username)
         return redirect("/")
 
 @app.route("/logout")
 def logout():
     del session["username"]
+    del session["user_id"]
     return redirect("/")
