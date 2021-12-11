@@ -10,3 +10,4 @@ output.xml
 report.html
 selenium-screenshot*
 feikki.db
+.env
