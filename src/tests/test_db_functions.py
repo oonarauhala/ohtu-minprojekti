@@ -10,95 +10,95 @@ class TestApp(unittest.TestCase):
         self.db_functions.tyhjenna()
 
     def test_tyhjenna(self):
-        self.db_functions.new_kirjavinkki("Testikirja", "Testaaja", "1", "Lue tämä")
+        self.db_functions.new_kirjavinkki("Testikirja", "Testaaja", "1", "Lue tämä", 1)
         self.db_functions.tyhjenna()
-        result = list(self.db_functions.get_kirjavinkit())
+        result = list(self.db_functions.get_kirjavinkit(1))
         self.assertEqual(len(result), 0)
 
-    def test_get_kirjavinkit_tyhjä(self):
-        result = list(self.db_functions.get_kirjavinkit())
+    def test_get_kirjavinkit_tyhja(self):
+        result = list(self.db_functions.get_kirjavinkit(1))
         self.assertEqual(len(result), 0)
 
     def test_new_kirjavinkki(self):
-        self.db_functions.new_kirjavinkki("Testikirja", "Testaaja", "1", "Lue tämä")
-        result = list(self.db_functions.get_kirjavinkit())
+        self.db_functions.new_kirjavinkki("Testikirja", "Testaaja", "1", "Lue tämä", 1)
+        result = list(self.db_functions.get_kirjavinkit(1))
         self.assertEqual(len(result), 1)
 
     def test_new_kirjavinkki_ei_tietokantaa(self):
-        result = self.db_functions2.new_kirjavinkki("Testi", "Testaaja", "1", "Lue")
+        result = self.db_functions2.new_kirjavinkki("Testi", "Testaaja", "1", "Lue", 1)
         self.assertFalse(result)
 
-    def test_get_blogivinkit_tyhjä(self):
-        result = list(self.db_functions.get_blogivinkit())
+    def test_get_blogivinkit_tyhja(self):
+        result = list(self.db_functions.get_blogivinkit(1))
         self.assertEqual(len(result), 0)
 
     def test_new_blogivinkki(self):
         self.db_functions.new_blogivinkki(
-            "Testiblogi", "Testaaja", "www.com", "Hyvä blogi"
+            "Testiblogi", "Testaaja", "www.com", "Hyvä blogi", 1
         )
-        result = list(self.db_functions.get_blogivinkit())
+        result = list(self.db_functions.get_blogivinkit(1))
         self.assertEqual(len(result), 1)
 
     def test_new_blogivinkki_ei_tietokantaa(self):
         result = self.db_functions2.new_blogivinkki(
-            "Testi", "Testaaja", "www.com", "Lue"
+            "Testi", "Testaaja", "www.com", "Lue", 1
         )
         self.assertFalse(result)
 
-    def test_get_podcastvinkit_tyhjä(self):
-        result = list(self.db_functions.get_podcastvinkit())
+    def test_get_podcastvinkit_tyhja(self):
+        result = list(self.db_functions.get_podcastvinkit(1))
         self.assertEqual(len(result), 0)
 
     def test_new_podcastvinkki(self):
         self.db_functions.new_podcastvinkki(
-            "Testipodcast", "Testaaja", "Testijakso", "Hyvä podcast"
+            "Testipodcast", "Testaaja", "Testijakso", "Hyvä podcast", 1
         )
-        result = list(self.db_functions.get_podcastvinkit())
+        result = list(self.db_functions.get_podcastvinkit(1))
         self.assertEqual(len(result), 1)
 
     def test_new_podcastvinkki_ei_tietokantaa(self):
-        result = self.db_functions2.new_podcastvinkki("Testi", "Testaaja", "1", "Lue")
+        result = self.db_functions2.new_podcastvinkki("Testi", "Testaaja", "1", "Lue", 1)
         self.assertFalse(result)
 
-    def test_get_videovinkit_tyhjä(self):
-        result = list(self.db_functions.get_videovinkit())
+    def test_get_videovinkit_tyhja(self):
+        result = list(self.db_functions.get_videovinkit(1))
         self.assertEqual(len(result), 0)
 
     def test_new_videovinkki(self):
         self.db_functions.new_videovinkki(
-            "Testivideo", "Testaaja", "www.com", "Hyvä video"
+            "Testivideo", "Testaaja", "www.com", "Hyvä video", 1
         )
-        result = list(self.db_functions.get_videovinkit())
+        result = list(self.db_functions.get_videovinkit(1))
         self.assertEqual(len(result), 1)
 
     def test_new_videovinkki_ei_tietokantaa(self):
         result = self.db_functions2.new_videovinkki(
-            "Testi", "Testaaja", "www.com", "Hyvä video"
+            "Testi", "Testaaja", "www.com", "Hyvä video", 1
         )
         self.assertFalse(result)
 
     def test_kirjavinkin_merkinta_luetuksi(self):
-        self.db_functions.new_kirjavinkki("Testikirja", "Testaaja", "1", "Lue tämä")
+        self.db_functions.new_kirjavinkki("Testikirja", "Testaaja", "1", "Lue tämä", 1)
         self.db_functions.merkitse_kirja_luetuksi("1")
-        result = self.db_functions.get_kirjavinkit()[0]["luettu"]
+        result = self.db_functions.get_kirjavinkit(1)[0]["luettu"]
         self.assertEqual(result, "kyllä")
 
     def test_blogivinkin_merkinta_luetuksi(self):
-        self.db_functions.new_blogivinkki("Testi", "Testaaja", "testi.fi", "lue")
+        self.db_functions.new_blogivinkki("Testi", "Testaaja", "testi.fi", "lue", 1)
         self.db_functions.merkitse_blogi_luetuksi("1")
-        result = self.db_functions.get_blogivinkit()[0]["luettu"]
+        result = self.db_functions.get_blogivinkit(1)[0]["luettu"]
         self.assertEqual(result, "kyllä")
 
     def test_podcastvinkin_merkinta_kuunnelluksi(self):
-        self.db_functions.new_podcastvinkki("Testicasti", "Testaaja", "jakso 1", "tää on hyvä")
+        self.db_functions.new_podcastvinkki("Testicasti", "Testaaja", "jakso 1", "tää on hyvä", 1)
         self.db_functions.merkitse_podcast_kuunnelluksi("1")
-        result = self.db_functions.get_podcastvinkit()[0]["luettu"]
+        result = self.db_functions.get_podcastvinkit(1)[0]["luettu"]
         self.assertEqual(result, "kyllä")
 
     def test_videovinkin_merkinta_katsotuksi(self):
-        self.db_functions.new_videovinkki("Video", "Kuvaaja", "video.fi", "kato tää")
+        self.db_functions.new_videovinkki("Video", "Kuvaaja", "video.fi", "kato tää", 1)
         self.db_functions.merkitse_video_katsotuksi("1")
-        result = self.db_functions.get_videovinkit()[0]["luettu"]
+        result = self.db_functions.get_videovinkit(1)[0]["luettu"]
         self.assertEqual(result, "kyllä")
 
     def test_merkitse_kirjavinkki_luetuksi_database_error(self):
