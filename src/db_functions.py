@@ -40,19 +40,21 @@ class DBFunctions:
             return False
         return True
 
-    def get_blogivinkit(self):
+    def get_blogivinkit(self, id):
         con = sql.connect(self.database)
         con.row_factory = sql.Row
+        con.isolation_level = None
 
         cur = con.cursor()
-        cur.execute("select * from Blogivinkit")
+        komento = "select * from Blogivinkit where kayttaja_id=:id"
 
-        rows = cur.fetchall()
+        rows = cur.execute(komento, {"id":id}).fetchall()
+
         return rows
 
-    def new_blogivinkki(self, nimi, kirjoittaja, url, kommentti):
-        komento = "INSERT INTO Blogivinkit (nimi, kirjoittaja, url, kommentti) \
-            VALUES (:nimi, :kirjoittaja, :url, :kommentti)"
+    def new_blogivinkki(self, nimi, kirjoittaja, url, kommentti, kayttaja_id):
+        komento = "INSERT INTO Blogivinkit (nimi, kirjoittaja, url, kommentti, kayttaja_id) \
+            VALUES (:nimi, :kirjoittaja, :url, :kommentti, :kayttaja_id)"
         con = sql.connect(self.database)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -65,25 +67,29 @@ class DBFunctions:
                     "kirjoittaja": kirjoittaja,
                     "url": url,
                     "kommentti": kommentti,
+                    "kayttaja_id": kayttaja_id
                 },
             )
         except OperationalError:
             return False
         return True
 
-    def get_podcastvinkit(self):
+    def get_podcastvinkit(self, id):
         con = sql.connect(self.database)
         con.row_factory = sql.Row
+        con.isolation_level = None
 
         cur = con.cursor()
-        cur.execute("select * from Podcastvinkit")
+        komento = "select * from Podcastvinkit where kayttaja_id=:id"
 
-        rows = cur.fetchall()
+        rows = cur.execute(komento, {"id":id}).fetchall()
+
         return rows
 
-    def new_podcastvinkki(self, nimi, tekija, jakson_nimi, kommentti):
-        komento = "INSERT INTO Podcastvinkit (nimi, tekija, jakson_nimi, kommentti) \
-            VALUES (:nimi, :tekija, :jakson_nimi, :kommentti)"
+
+    def new_podcastvinkki(self, nimi, tekija, jakson_nimi, kommentti, kayttaja_id):
+        komento = "INSERT INTO Podcastvinkit (nimi, tekija, jakson_nimi, kommentti, kayttaja_id) \
+            VALUES (:nimi, :tekija, :jakson_nimi, :kommentti, :kayttaja_id)"
         con = sql.connect(self.database)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -96,25 +102,29 @@ class DBFunctions:
                     "tekija": tekija,
                     "jakson_nimi": jakson_nimi,
                     "kommentti": kommentti,
+                    "kayttaja_id": kayttaja_id
                 },
             )
         except OperationalError:
             return False
         return True
 
-    def get_videovinkit(self):
+    def get_videovinkit(self, id):
         con = sql.connect(self.database)
         con.row_factory = sql.Row
+        con.isolation_level = None
 
         cur = con.cursor()
-        cur.execute("select * from Videovinkit")
+        komento = "select * from Videovinkit where kayttaja_id=:id"
 
-        rows = cur.fetchall()
+        rows = cur.execute(komento, {"id":id}).fetchall()
+
         return rows
 
-    def new_videovinkki(self, nimi, tekija, url, kommentti):
-        komento = "INSERT INTO Videovinkit (nimi, tekija, url, kommentti) \
-            VALUES (:nimi, :tekija, :url, :kommentti)"
+
+    def new_videovinkki(self, nimi, tekija, url, kommentti, kayttaja_id):
+        komento = "INSERT INTO Videovinkit (nimi, tekija, url, kommentti, kayttaja_id) \
+            VALUES (:nimi, :tekija, :url, :kommentti, :kayttaja_id)"
         con = sql.connect(self.database)
         con.row_factory = sql.Row
         con.isolation_level = None
@@ -122,7 +132,7 @@ class DBFunctions:
         try:
             cur.execute(
                 komento,
-                {"nimi": nimi, "tekija": tekija, "url": url, "kommentti": kommentti},
+                {"nimi": nimi, "tekija": tekija, "url": url, "kommentti": kommentti, "kayttaja_id": kayttaja_id},
             )
         except OperationalError:
             return False

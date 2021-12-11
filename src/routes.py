@@ -24,9 +24,9 @@ def index():
 @app.route("/list")
 def list_function():
     kirjarows = db_functions.get_kirjavinkit(session["user_id"])
-    blogirows = db_functions.get_blogivinkit()
-    podrows = db_functions.get_podcastvinkit()
-    vidrows = db_functions.get_videovinkit()
+    blogirows = db_functions.get_blogivinkit(session["user_id"])
+    podrows = db_functions.get_podcastvinkit(session["user_id"])
+    vidrows = db_functions.get_videovinkit(session["user_id"])
     return render_template(
         "list.html",
         kirjarows=kirjarows,
@@ -44,7 +44,7 @@ def new_book():
         kirjoittaja = request.form["kirjoittaja"]
         isbn = request.form["isbn"]
         kommentti = request.form["kommentti"]
-        if validate_fields(otsikko, kirjoittaja, isbn, kommentti, session["user_id"]):
+        if validate_fields(otsikko, kirjoittaja, isbn, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
         if db_functions.new_kirjavinkki(otsikko, kirjoittaja, isbn, kommentti, session["user_id"]):
@@ -64,7 +64,7 @@ def new_blog():
         if validate_fields(nimi, kirjoittaja, url, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
-        if db_functions.new_blogivinkki(nimi, kirjoittaja, url, kommentti):
+        if db_functions.new_blogivinkki(nimi, kirjoittaja, url, kommentti, session["user_id"]):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
@@ -81,7 +81,7 @@ def new_podcast():
         if validate_fields(nimi, tekija, jakson_nimi, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
-        if db_functions.new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti):
+        if db_functions.new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti, session["user_id"]):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
@@ -98,7 +98,7 @@ def new_video():
         if validate_fields(nimi, tekija, url, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
-        if db_functions.new_videovinkki(nimi, tekija, url, kommentti):
+        if db_functions.new_videovinkki(nimi, tekija, url, kommentti, session["user_id"]):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
