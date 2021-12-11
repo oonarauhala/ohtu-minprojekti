@@ -1,16 +1,32 @@
 <!doctype html>
 <html>
    <title>Etusivu</title>
+   {% if session.username %}
    <body>
       <h1>Lukuvinkkisovellus</h1>
-      <br>
+      <p>Olet kirjautunut nimellä <b>{{ session.username }}</b></p>
+      <p><a href="/logout">Kirjaudu ulos</a></p>
       <ul>
          <li><h2><a href = "/list">Lista</a></h2></li>
          <li><h2><a href = "/new_book">Uusi kirjavinkki</a></h2></li>
          <li><h2><a href = "/new_blog">Uusi blogivinkki</a></h2></li>
          <li><h2><a href = "/new_video">Uusi videovinkki</a></h2></li>
          <li><h2><a href = "/new_podcast">Uusi podcastvinkki</a></h2></li>
-         <a href="/register">Luo uusi käyttäjä</a> Tämän voi poistaa tästä kun kirjautuminen on lisätty sovellukseen 
       </ul>
    </body>
+   {% else %}
+   <body>
+      <h1>Lukuvinkkisovellus</h1>
+      <br>
+      <form action="/login" method="POST">
+         <p>Käyttäjätunnus:<br>
+         <input type="text" name="username"></p>
+         <p>Salasana:<br>
+         <input type="password" name="password"></p>
+         <input type="submit" value="Kirjaudu">
+      </form>
+      <br>
+      <a href="/register">Luo uusi käyttäjä</a>
+   </body>
+   {% endif %}
 </html>

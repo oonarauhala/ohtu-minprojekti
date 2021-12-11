@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from app import app
 from db_functions import DBFunctions
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -191,3 +191,21 @@ def confirm_video():
     title = request.args.get("title")
     url = request.args.get("url")
     return render_template("/confirm_video.html", author=author, title=title, url=url)
+
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.form["username"]
+    password = request.form["password"]
+    user = dict(db_functions.etsi_kayttaja(username)) # ei jostain syystä toimi user.salasana niin käytetään dict
+    if not user:
+        return render_template("/error.html", viesti="invalid username")
+    else:
+        if not check_password_hash(user["salasana"], password):
+            return render_template("/error.html", viesti="invalid password")
+        session["username"] = username
+        return redirect("/")
+
+@app.route("/logout")
+def logout():
+    del session["username"]
+    return redirect("/")
