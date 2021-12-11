@@ -168,6 +168,9 @@ def isbn_search():
 @app.route("/url_search", methods=["POST"])
 def url_search():
     video_id = request.form["video_id"]
+    if "=" not in video_id:
+        return render_template("/error.html", viesti="invalid URL")
+    video_id = video_id.split("=")[1]
     try:
         params = {"format": "json", "url": "https://www.youtube.com/watch?v=%s" % video_id}
         url = "https://www.youtube.com/oembed"
