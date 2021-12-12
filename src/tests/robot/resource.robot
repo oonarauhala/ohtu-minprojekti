@@ -4,8 +4,8 @@ Library  String
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  chrome
-${DELAY}  0.2 seconds
+${BROWSER}  headlesschrome
+${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}
 ${NEW BOOK URL}  http://${SERVER}/new_book
 ${NEW BLOG URL}  http://${SERVER}/new_blog
