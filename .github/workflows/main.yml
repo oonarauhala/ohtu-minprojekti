@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: env
 
     steps:
       - uses: actions/checkout@v2
@@ -21,8 +20,6 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
-      - name: Create secret
-        run: "${{secrets.SECRET_KEY}}" > .env
       - name: Run robot tests
         run: bash run_robot_tests.sh
       - name: Run unit tests
