@@ -2,25 +2,30 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
-Test Setup  Go To New Book Page
+Test Setup  Go To Main Page And Log In
+Test Teardown  Log Out
 
 *** Test Cases ***
 Add A Book
+    Go To New Book Page
     Input Book Info  testi  testikirjoittaja  01234  hyva kirja
     Submit vinkki
     List Page Should Be Open
 
 Add A Book Wrong
+    Go To New Book Page
     Input Book Info  testi  \  01234  hyva kirja
     Submit vinkki
     Error Page Should Be Open
 
 Add A Book By ISBN
+    Go To New Book Page
     Input ISBN  951-31-1146-6
     Submit ISBN/URL
     Confirm Page Should Be Open
 
 Add A Book By Wrong ISBN
+    Go To New Book Page
     Input ISBN  123
     Submit ISBN/URL
     Error Page Should Be Open
