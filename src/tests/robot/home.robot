@@ -2,7 +2,8 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
-Test Setup  Go To Main Page
+Test Setup  Go To Main Page And Log In
+Test Teardown  Log Out
 
 *** Test Cases ***
 Click Uusi Kirjavinkki Link

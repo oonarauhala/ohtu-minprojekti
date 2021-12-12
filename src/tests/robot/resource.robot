@@ -130,3 +130,13 @@ Input Login Info
 
 Login Page Should Be Open
     Title Should Be   Kirjaudu
+
+Go To Main Page And Log In
+    Go To Main Page
+    Input Text  username  testikayttis
+    Input Text  password  HyväSalasana
+    Click Button  Kirjaudu
+
+Log Out
+    Go To Main Page
+    Click Link  Kirjaudu ulos
