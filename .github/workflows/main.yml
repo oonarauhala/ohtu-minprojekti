@@ -23,7 +23,7 @@ jobs:
       - name: Create test .env file
         run:  |
           touch .env
-          echo SECRET_KEY = asd
+          echo SECRET_KEY = asd >> .env
       - name: Run robot tests
         run: bash run_robot_tests.sh
       - name: Run unit tests
