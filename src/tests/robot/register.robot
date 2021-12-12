@@ -14,7 +14,7 @@ Register Correctly
     ${RANDOM NAME}  Create Random Username
     Input Register Info  ${RANDOM NAME}  kissa123  kissa123
     Submit Registration
-    Main Page Should Be Open
+    Login Page Should Be Open
 
 Register With Too Short Password
     ${RANDOM NAME}  Create Random Username
