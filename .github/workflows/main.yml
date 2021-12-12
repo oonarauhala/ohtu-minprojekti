@@ -20,6 +20,8 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
+      - name: Create .env file
+        run: echo ${{ secrets.SECRET_KEY }} > .env
       - name: Run robot tests
         run: bash run_robot_tests.sh
       - name: Run unit tests
