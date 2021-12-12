@@ -1,13 +1,19 @@
 import unittest
+from unittest import mock
 from app import app
+from os import environ
 
 
 class TestRoutes(unittest.TestCase):
+    @mock.patch.dict(environ, {"SECRET_KEY": "ASDF"})
     def setUp(self):
         app.config["TESTING"] = True
         app.config["WTF_CSRF_ENABLED"] = False
         app.config["DEBUG"] = False
+        app.config["SECRET_KEY"] = environ["SECRET_KEY"]
         self.app = app.test_client()
+        with self.app.session_transaction() as session:
+            session["user_id"] = 2
 
     def test_list_page(self):
         response = self.app.get("/list")
