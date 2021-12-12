@@ -4,8 +4,8 @@ Library  String
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  headlesschrome
-${DELAY}  0 seconds
+${BROWSER}  chrome
+${DELAY}  0.2 seconds
 ${HOME URL}  http://${SERVER}
 ${NEW BOOK URL}  http://${SERVER}/new_book
 ${NEW BLOG URL}  http://${SERVER}/new_blog
@@ -122,3 +122,11 @@ Input Register Info
 Create Random Username
     ${RANDOM NAME}  Generate Random String  5  [LETTERS][NUMBERS]
     [Return]  ${RANDOM NAME}
+
+Input Login Info
+    [Arguments]  ${tunnus}  ${salasana}
+    Input Text  username  ${tunnus}
+    Input Text  password  ${salasana}
+
+Login Page Should Be Open
+    Title Should Be   Kirjaudu
