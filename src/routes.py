@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, session
 from app import app
 from db_functions import DBFunctions
 from werkzeug.security import check_password_hash, generate_password_hash
+from operator import itemgetter
 from isbnlib import meta
 import urllib.request
 import json
@@ -56,15 +57,14 @@ def new_book():
 def new_blog():
     if request.method == "GET":
         return render_template("new_blog.html")
-    if request.method == "POST":
+    elif request.method == "POST":
         nimi = request.form["nimi"]
         kirjoittaja = request.form["kirjoittaja"]
         url = request.form["url"]
         kommentti = request.form["kommentti"]
         if validate_fields(nimi, kirjoittaja, url, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
-
-        if db_functions.new_blogivinkki(nimi, kirjoittaja, url, kommentti, session["user_id"]):
+        elif db_functions.new_blogivinkki(nimi, kirjoittaja, url, kommentti, session["user_id"]):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
@@ -73,15 +73,12 @@ def new_blog():
 def new_podcast():
     if request.method == "GET":
         return render_template("new_podcast.html")
-    if request.method == "POST":
-        nimi = request.form["nimi"]
-        tekija = request.form["tekija"]
-        jakson_nimi = request.form["jakson_nimi"]
-        kommentti = request.form["kommentti"]
+    elif request.method == "POST":
+        nimi, tekija, jakson_nimi, kommentti = itemgetter("nimi","tekija","jakson_nimi","kommentti")(request.form)
         if validate_fields(nimi, tekija, jakson_nimi, kommentti):
             return render_template("error.html", viesti="Kaikki kentät tulee täyttää")
 
-        if db_functions.new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti, session["user_id"]):
+        elif db_functions.new_podcastvinkki(nimi, tekija, jakson_nimi, kommentti, session["user_id"]):
             return redirect("/list")
 
         return render_template("error.html", viesti="Lisääminen epäonnistui")
