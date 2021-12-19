@@ -39,7 +39,8 @@ pytest src
 
 ## Dokumentaatio
 
-[Backlog](https://docs.google.com/spreadsheets/d/18ML2sxw8d6rkpPOPR_jcKxy2z214WIsQhWD_ZzRB4dU/edit#gid=1442053365)
+[Backlog](https://docs.google.com/spreadsheets/d/18ML2sxw8d6rkpPOPR_jcKxy2z214WIsQhWD_ZzRB4dU/edit#gid=1442053365)  
+[Raportti](https://docs.google.com/document/d/1dtSn-LoV5Th76oDYbbuyy4iPyD02zwCq65mqAUJHNrU/edit?usp=sharing)
 
 ## Definition of done
 
